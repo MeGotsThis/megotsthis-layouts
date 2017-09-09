@@ -1,0 +1,93 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="gpmd-player">
+  <template>
+    <style>
+      :host {
+        color: white;
+      }
+
+      #notPlaying:not([hidden]) {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        font-size: 150%;
+        @apply --not-playing-style;
+      }
+
+      #notPlaying span {
+        padding: 0.6em;
+        background-image: radial-gradient(ellipse, rgba(128, 128, 128, 0.6), rgba(128, 128, 128, 0));
+        @apply --not-playing-text-style;
+      }
+
+      #image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+      }
+
+      #top {
+        position: relative;
+        padding: 0.4em;
+        z-index: 0;
+      }
+
+      #background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(to bottom, rgba(128, 128, 128, 0.4), rgba(128, 128, 128, 0.4), rgba(128, 128, 128, 0));
+        height: 133.33333%;
+        z-index: -1;
+      }
+
+      #title {
+        text-transform: uppercase;
+        text-align: left;
+        font-weight: 700;
+        @apply --title-style;
+      }
+
+      #artist {
+        font-size: 75%;
+        @apply --artist-style;
+      }
+
+      #album {
+        font-size: 75%;
+        @apply --artist-style;
+      }
+    </style>
+
+    <iron-image sizing="contain" id="image" src="[[albumArt]]"></iron-image>
+    <div id="top">
+      <div id="background"></div>
+      <div id="title" hidden$="[[hideTitle]]">[[title]]</div>
+      <div id="artist" hidden$="[[hideArtist]]">[[artist]]</div>
+      <div id="album" hidden$="[[hideAlbum]]">[[album]]</div>
+    </div>
+    <div id="notPlaying" hidden$="[[playing]]">
+      <span>- Not Playing -</span>
+    </div>
+  </template>
+
+  <script src="gpmd.js"></script>
+  <script src="gpmd-player.js"></script>
+</dom-module>

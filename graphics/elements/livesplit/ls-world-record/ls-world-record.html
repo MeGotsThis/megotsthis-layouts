@@ -1,0 +1,31 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../livesplit-ext.html">
+
+<dom-module id="ls-world-record">
+  <template>
+    <style>
+      :host {
+      }
+
+      #box {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        @apply --container-style;
+      }
+
+      #record {
+        flex: none;
+        @apply --record-style;
+      }
+    </style>
+
+    <div id="box">
+      <span id="record">[[record]]</span>
+    </div>
+  </template>
+
+  <script src="ls-world-record.js"></script>
+</dom-module>

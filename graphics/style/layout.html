@@ -1,0 +1,306 @@
+<link rel="import" href="text-styles.html">
+
+<dom-module id="global-style">
+	<template>
+    <style include="text-styles">
+      html {
+        --mono-font: 'Ubuntu Mono', monospace;
+
+        --bg-color-1: #0f52ba;
+        --bg-color-2: #082567;
+        --layout-bg-image: linear-gradient(to right, var(--bg-color-2), var(--bg-color-1), var(--bg-color-2));
+        --layout-bg-color1-image: linear-gradient(to right, var(--bg-color-1), var(--bg-color-1));
+        --layout-bg-divider-image: var(--layout-bg-color1-image);
+
+        --container-width: 1920px;
+        --container-height: 1080px;
+      }
+
+      gpmd-horizontal {
+        @apply --shadow;
+        position: absolute;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+
+      mgt-game-info {
+        box-sizing: border-box;
+      }
+
+      mgt-game-bar {
+        box-sizing: border-box;
+      }
+
+      mgt-advertisement {
+        position: absolute;
+        box-sizing: border-box;
+        width: var(--ad-width);
+        height: var(--ad-height);
+
+        --content-style: {
+          @apply --shadow;
+          font-size: var(--ad-font-size, 36px);
+        }
+
+        --donation-goal-style: {
+          width: calc(var(--ad-donation-width, var(--ad-width)) * var(--ad-donation-scale, 1));
+          transform: scale(calc(1 / var(--ad-donation-scale, 1)));
+        }
+      }
+
+      mgt-break {
+        z-index: 15;
+      }
+
+      streamlabs-alertbox {
+        --alert-scale: 1;
+        --alert-padding-top: 0px;
+        --alert-padding-left: 0px;
+        --alert-padding-right: 0px;
+        --alert-padding-bottom: 0px;
+
+        z-index: 20;
+        position: absolute;
+        box-sizing: border-box;
+        padding-top: calc(var(--alert-padding-top) * var(--alert-scale));
+        padding-left: calc(var(--alert-padding-left) * var(--alert-scale));
+        padding-right: calc(var(--alert-padding-right) * var(--alert-scale));
+        padding-bottom: calc(var(--alert-padding-bottom) * var(--alert-scale));
+        width: calc(var(--alert-width) * var(--alert-scale));
+        height: calc(var(--alert-height) * var(--alert-scale));
+        transform: scale(calc(1 / var(--alert-scale)));
+      }
+
+      ls-title,
+      ls-detail-timer,
+      ls-timer,
+      ls-split-header,
+      ls-indexable-split,
+      ls-split,
+      ls-possible-time-save,
+      ls-run-prediction,
+      ls-comparing-against,
+      ls-sum-of-best,
+      ls-total-playtime,
+      ls-previous-segment,
+      ls-delta,
+      ls-world-record,
+      .ls-text {
+        @apply --shadow;
+        color: white;
+        white-space: nowrap;
+      }
+
+      ls-detail-timer,
+      ls-timer {
+        font-size: 200%;
+
+        --fraction-base: {
+          font-size: 66.7%;
+        };
+        --fraction-style: {
+          @apply --fraction-base;
+        };
+
+        --timer-base: {
+          font-family: var(--mono-font);
+        };
+        --timer-style: {
+          @apply --timer-base;
+        };
+
+        --segment-base: {
+          font-family: var(--mono-font);
+          font-size: 80%;
+        };
+        --segment-style: {
+          @apply --segment-base;
+        };
+
+        --name-base: {
+          font-size: 60%;
+        }
+        --name-style: {
+          @apply --name-base;
+        }
+        --comparison-info-base: {
+          font-size: 40%;
+        }
+        --comparison-info-style: {
+          @apply --comparison-info-base;
+        }
+      }
+
+      ls-split-header,
+      ls-indexable-split,
+      ls-split {
+        --column-base: {
+          font-family: var(--mono-font);
+          width: 5em;
+        }
+        --column-style: {
+          @apply --column-base;
+        }
+      }
+
+      ls-indexable-split,
+      ls-split {
+        --icon-base: {
+          max-height: 100%;
+          max-width: 100%;
+        }
+        --icon-style: {
+          @apply --icon-base;
+        }
+        --active-split-base: {
+          background-color: rgba(0, 255, 255, 0.2);
+        }
+        --active-split-style: {
+          @apply --active-split-base;
+        }
+      }
+
+      ls-detail-timer,
+      ls-timer,
+      ls-split,
+      ls-previous-segment,
+      ls-delta {
+        --default-base: {
+        }
+        --default-style: {
+          @apply --default-base;
+        }
+        --ahead-gaining-base: {
+          color: #ABEBC6;
+        }
+        --ahead-gaining-style: {
+          @apply --ahead-gaining-base;
+        }
+        --ahead-losing-base: {
+          color: #27AE60;
+        }
+        --ahead-losing-style: {
+          @apply --ahead-losing-base;
+        }
+        --behind-gaining-base: {
+          color: #EC7063;
+        }
+        --behind-gaining-style: {
+          @apply --behind-gaining-base;
+        }
+        --behind-losing-base: {
+          color: #C0392B;
+        }
+        --behind-losing-style: {
+          @apply --behind-losing-base;
+        }
+        --best-segment-base: {
+          color: #F7DC6F;
+        }
+        --best-segment-style: {
+          @apply --best-segment-base;
+        }
+        --before-split-base: {
+        }
+        --before-split-style: {
+          @apply --before-split-base;
+        }
+      }
+
+      ls-detail-timer,
+      ls-timer {
+        --personal-best-base: {
+          color: #85C1E9;
+        }
+        --personal-best-style: {
+          @apply --personal-best-base;
+        }
+        --paused-base: {
+        }
+        --paused-style: {
+          @apply --paused-base;
+        }
+        --not-running-base: {
+          color: white;
+        }
+        --not-running-style: {
+          @apply --not-running-base;
+        }
+        --not-connected-base: {
+        }
+        --not-connected-style: {
+          @apply --not-connected-base;
+        }
+      }
+
+      ls-split {
+        --before-split-base: {
+        }
+        --before-split-style: {
+          @apply --before-split-base;
+        }
+        --current-split-base: {
+        }
+        --current-split-style: {
+          @apply --current-split-base;
+        }
+        --after-split-base: {
+        }
+        --after-split-style: {
+          @apply --after-split-base;
+        }
+      }
+
+      ls-possible-time-save,
+      ls-run-prediction,
+      ls-sum-of-best,
+      ls-total-playtime,
+      ls-previous-segment,
+      ls-delta {
+        --value-style: {
+          font-family: var(--mono-font);
+        }
+      }
+
+      hr.split {
+        flex: none;
+        box-sizing: border-box;
+        margin: 0px;
+      }
+
+      ls-timer.only-timer {
+        --timer-style: {
+          @apply --timer-base;
+          text-align: center;
+        }
+
+        --fraction-style: {
+          @apply --fraction-base;
+          font-size: 100%;
+        }
+
+        --ahead-gaining-style: {
+          color: currentcolor;
+        }
+        --ahead-losing-style: {
+          color: currentcolor;
+        }
+        --behind-gaining-style: {
+          color: currentcolor;
+        }
+        --behind-losing-style: {
+          color: currentcolor;
+        }
+        --not-running-style: {
+          color: currentcolor;
+        }
+        --ahead-gaining-style: {
+          color: currentcolor;
+        }
+        --personal-best-style: {
+          color: currentcolor;
+        }
+      }
+    </style>
+  </template>
+</dom-module>

@@ -1,0 +1,47 @@
+<link rel="import" href="../mgt-cycler/mgt-cycler.html">
+<link rel="import" href="../streamlabs/streamlabs-donationgoal/streamlabs-donationgoal.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="mgt-break">
+  <template>
+    <style>
+      :host {
+        width: 100%;
+        height: 100%;
+      }
+
+      #content {
+        -webkit-text-stroke: 0.07em black;
+        text-stroke: 0.07em black;
+        color: rgba(255, 255, 255, 0.5);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        @apply --break-content-style;
+      }
+
+      #title {
+        font-size: 150%;
+        white-space: nowrap;
+        text-transform: uppercase;
+        @apply --break-title-style;
+      }
+
+      #text {
+        white-space: nowrap;
+        @apply --break-text-style;
+      }
+    </style>
+
+    <div id="content">
+      <span id="title">Taking a break</span>
+      <span id="text">[[text]]</span>
+    </div>
+  </template>
+
+  <script src="mgt-break.js"></script>
+</dom-module>

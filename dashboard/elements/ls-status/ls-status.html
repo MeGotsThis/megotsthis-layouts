@@ -1,0 +1,26 @@
+<link rel="import" href="../../../bower_components/nodecg-toggle/nodecg-toggle.html">
+
+<dom-module id="ls-status">
+  <template>
+    <style>
+      :host {
+      }
+
+      #show {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+    </style>
+
+    <nodecg-toggle id="show" disabled replicant-name="livesplit-connected">
+      <span style$="color: [[connectedColor]]; font-weight: [[connectedWeight]]">
+        LiveSplit [[connected]]
+      </span>
+    </nodecg-toggle>
+    <div>
+      Timer State: [[timerState]]
+    </div>
+  </template>
+
+  <script src="ls-status.js"></script>
+</dom-module>

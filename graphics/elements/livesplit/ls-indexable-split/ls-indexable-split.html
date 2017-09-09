@@ -1,0 +1,168 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../livesplit-ext.html">
+
+<dom-module id="ls-indexable-split">
+  <template>
+    <style>
+      :host {
+        min-width: 0;
+      }
+
+      #box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100%;
+        @apply --container-style;
+      }
+
+      #icon-box {
+        flex: none;
+        @apply --icon-box-style;
+      }
+
+      #text-box {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        min-width: 0;
+        @apply --text-box-style;
+      }
+
+      #name-box {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        min-width: 0;
+        @apply --name-box-style;
+      }
+
+      #column-box {
+        flex: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        @apply --column-box-style;
+      }
+
+      #icon {
+        width: 100%;
+        height: 100%;
+        @apply --icon-style;
+      }
+
+      #name {
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @apply --name-style;
+      }
+
+      .column {
+        text-align: right;
+        flex: 1;
+        @apply --column-style;
+      }
+
+      .delta {
+        text-align: right;
+        flex: 1;
+        @apply --delta-style;
+      }
+
+      .time {
+        text-align: right;
+        flex: 1;
+        @apply --time-style;
+      }
+
+      .active-split {
+        @apply --active-split-style;
+      }
+
+      .ahead-gaining {
+        color: lightgreen;
+        @apply --default-style;
+        @apply --ahead-gaining-style;
+      }
+
+      .ahead-losing {
+        color: green;
+        @apply --default-style;
+        @apply --ahead-losing-style;
+      }
+
+      .behind-gaining {
+        color: red;
+        @apply --default-style;
+        @apply --behind-gaining-style;
+      }
+
+      .behind-losing {
+        color: darkred;
+        @apply --default-style;
+        @apply --behind-losing-style;
+      }
+
+      .best-segment {
+        color: gold;
+        @apply --default-style;
+        @apply --best-segment-style;
+      }
+
+      .before-split {
+        @apply --default-style;
+        @apply --before-split-style;
+      }
+
+      .current-split {
+        @apply --default-style;
+        @apply --current-split-style;
+      }
+
+      .after-split {
+        @apply --default-style;
+        @apply --after-split-style;
+      }
+
+      .delta {
+        @apply --default-style;
+        @apply --delta-style;
+      }
+    </style>
+
+    <div id="box" class$="[[computeBoxClass(_liveSplit, index)]]">
+      <div id="icon-box" hidden$="[[hideIcon]]">
+        <iron-image sizing="contain" id="icon" src="[[split.icon]]" />
+      </div>
+      <div id="text-box">
+        <span id="name-box">
+          <span id="name">[[split.name]]</span>
+        </span>
+        <span id="column-box">
+          <span id="column1" hidden$="[[!isValidType(column1Type)]]" class$="column [[column1Value.className]]">
+            [[column1Time]]
+          </span>
+          <span id="column2" hidden$="[[!isValidType(column2Type)]]" class$="column [[column2Value.className]]">
+            [[column2Time]]
+          </span>
+          <span id="column3" hidden$="[[!isValidType(column3Type)]]" class$="column [[column3Value.className]]">
+            [[column3Time]]
+          </span>
+          <span id="column4" hidden$="[[!isValidType(column4Type)]]" class$="column [[column4Value.className]]">
+            [[column4Time]]
+          </span>
+        </span>
+      </div>
+    </div>
+  </template>
+
+  <script src="ls-indexable-split.js"></script>
+</dom-module>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="import" href="../../bower_components/paper-input/paper-input.html">
+</head>
+<body>
+  <paper-input id="preset" always-float-label label="Preset Name"></paper-input>
+
+  <script>
+    const input = document.getElementById('preset');
+    document.addEventListener('dialog-confirmed', () => {
+      nodecg.sendMessage('saveGamePreset', input.value);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<link rel="import" href="../mgt-cycler/mgt-cycler.html">
+<link rel="import" href="../streamlabs/streamlabs-donationgoal/streamlabs-donationgoal.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="mgt-advertisement">
+  <template>
+    <style>
+      :host {
+        background: url(http://i.imgur.com/st4Fa8h.gif) no-repeat -99999px -99999px,
+            url(../../img/twitter-icon.png) no-repeat -99999px -99999px;
+      }
+
+      mgt-cycler {
+        @apply --content-style;
+      }
+
+      streamlabs-donationgoal {
+        @apply --donation-goal-style;
+      }
+    </style>
+
+    <mgt-cycler force-index="[[forceIndex]]" global-time duration="60">
+      <streamlabs-donationgoal hidden$="[[!showDonationGoal]]"></streamlabs-donationgoal>
+      <span style="font-size: 150%; margin-top: -8px">☺</span>
+      <span>Don't forget to give me a follow!</span>
+      <span>twitch.tv/MeGotsThis</span>
+      <div style="display: flex; justify-content: center; align-items: center;">
+        <iron-image src="img/twitter-icon.png" sizing="contain" style="height: calc(var(--ad-height) * 0.7); width: calc(var(--ad-height) * 0.7);"></iron-image>
+        <span style="padding-left: 0.5em;">MeGotsThis</span>
+      </div>
+      <span>:)</span>
+      <streamlabs-donationgoal hidden$="[[!showDonationGoal]]"></streamlabs-donationgoal>
+      <span>Discord: !discord</span>
+      <div style="width: var(--ad-width); height: var(--ad-height); display: flex; justify-content: center; align-items: center;">
+        <iron-image src="http://i.imgur.com/st4Fa8h.gif" sizing="contain" style="height: 100%; flex: 1;"></iron-image>
+        <iron-image src="http://i.imgur.com/st4Fa8h.gif" sizing="contain" style="height: 100%; flex: 1;"></iron-image>
+        <iron-image src="http://i.imgur.com/st4Fa8h.gif" sizing="contain" style="height: 100%; flex: 1;"></iron-image>
+        <iron-image src="http://i.imgur.com/st4Fa8h.gif" sizing="contain" style="height: 100%; flex: 1;"></iron-image>
+        <iron-image src="http://i.imgur.com/st4Fa8h.gif" sizing="contain" style="height: 100%; flex: 1;"></iron-image>
+      </div>
+    </mgt-cycler>
+  </template>
+
+  <script src="mgt-advertisement.js"></script>
+</dom-module>

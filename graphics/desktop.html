@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Desktop</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="elements/gpmd/gpmd-horizontal.html">
+  <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
+  <link rel="import" href="elements/mgt-break/mgt-break.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <link rel="import" href="elements/mgt-ext.html">
+  <custom-style>
+    <style include="global-style">
+      body {
+        background: url(img/backgrounds_cam/widescreen_1-92_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/widescreen_1-92_fg.png) no-repeat -99999px -99999px;
+      }
+
+      #container {
+        --left-section-width: calc(var(--container-width) - var(--capture-width));
+        --left-section-height: calc(var(--container-height) - var(--webcam-height));
+        --webcam-width: var(--left-section-width);
+        --webcam-height: 0px;
+        --capture-width: calc(var(--container-width) * 11 / 12);
+        --capture-height: calc(var(--container-height) * 11 / 12);
+        --section-width: calc(var(--capture-width) / 2);
+        --section-height: calc(var(--container-height) - var(--capture-height));
+      }
+
+      #container[webcam] {
+        --webcam-height: calc(var(--webcam-width) * 3 / 2);
+      }
+
+      #container #background {
+        background-image: var(--layout-bg-image), var(--layout-bg-image), var(--layout-bg-image);
+        background-position: left bottom, right var(--section-width) bottom, right bottom;
+        background-size: var(--left-section-width) var(--left-section-height), var(--section-width) var(--section-height), var(--section-width) var(--section-height);
+        background-repeat: no-repeat, no-repeat, no-repeat;
+      }
+
+      #container #foreground {
+        background-image: url(img/backgrounds_no_cam/widescreen_1-92_fg.png);
+      }
+
+      #container[webcam] #foreground {
+        background-image: url(img/backgrounds_cam/widescreen_1-92_fg.png);
+      }
+
+      gpmd-horizontal {
+        right: var(--section-width);
+        bottom: 0;
+        width: var(--section-width);
+        height: var(--section-height);
+        font-size: 20px;
+        padding: 20px 12px 20px 20px;
+
+        --title-style: {
+          padding-right: 6px;
+          flex: 10 1;
+        };
+
+        --artist-style: {
+          padding-left: 6px;
+          padding-right: 6px;
+          flex: 7 1;
+        };
+
+        --album-style: {
+          padding-left: 6px;
+          flex: 8 1;
+        };
+      }
+
+      mgt-advertisement {
+        right: 0;
+        bottom: 0;
+        --ad-width: var(--section-width);
+        --ad-height: var(--section-height);
+        padding: 16px 16px 16px 8px;
+
+        --content-style: {
+          @apply --shadow;
+          font-size: 36px;
+        }
+      }
+
+      mgt-break {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: var(--capture-width);
+        height: var(--capture-height);
+        font-size: 90px;
+      }
+
+      streamlabs-alertbox {
+        position: absolute;
+        left: 1040px;
+        top: 660px;
+        transform-origin: top left;
+        --alert-scale: 1.5;
+        --alert-width: 880px;
+        --alert-height: 330px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <gpmd-horizontal id="musicPlayer" class="shadow" hide-album="[[hideAlbum]]" hide-artist="[[hideArtist]]" hide-time></gpmd-horizontal>
+        <mgt-advertisement></mgt-advertisement>
+        <mgt-break></mgt-break>
+        <streamlabs-alertbox></streamlabs-alertbox>
+      </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+    const gmpd = nodecg.Replicant('gmpd');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      webcam.on('change', (value) => {
+        if (value) {
+          this.$.container.setAttribute('webcam', true);
+        } else {
+          this.$.container.removeAttribute('webcam');
+        }
+      });
+
+      gmpd.on('change', (value) => {
+        this.$.musicPlayer.hideArtist = hideArtist(value.track.title,
+            value.track.artist, value.track.album);
+        this.$.musicPlayer.hideAlbum = hideAlbum(value.track.title,
+            value.track.artist, value.track.album);
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>

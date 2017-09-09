@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+
+  "properties": {
+    "googlePlayMusic": {
+      "type": "boolean",
+      "description": "Allow connecting to Google Play Music Desktop player",
+      "default": false
+    },
+    "livesplit": {
+      "type": ["object", "null"],
+      "properties": {
+        "host": {
+          "type": "string",
+          "description": "The host to connect to LiveSplit WebSocket Server"
+        },
+        "port": {
+          "type": "number",
+          "description": "The port to connect to LiveSplit WebSocket Server"
+        }
+      },
+      "required": ["host"],
+      "default": null
+    },
+    "streamLabs": {
+      "type": ["object", "null"],
+      "properties": {
+        "apiAccessToken": {
+          "type": "string",
+          "description": "The API token that StreamLabs uses for the widgets. You can find it at API Settings > API Tokens."
+        }
+      },
+      "required": ["apiAccessToken"],
+      "default": null
+    },
+    "voicemeeter": {
+      "type": ["object", "null"],
+      "properties": {
+        "installPath": {
+          "type": "string",
+          "description": "The install path of Voicemeeter. This is help locate VoicemeeterRemote.dll."
+        },
+        "gameAudioChannels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "fader": {
+                "type": ["string", "null"]
+              },
+              "mute": {
+                "type": ["string", "null"]
+              }
+            }
+          },
+          "minItems": 4,
+          "maxItems": 4
+        }
+      },
+      "required": ["installPath", "gameAudioChannels"],
+      "default": null
+    }
+  }
+}

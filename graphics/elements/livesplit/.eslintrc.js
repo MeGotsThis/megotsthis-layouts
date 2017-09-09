@@ -1,0 +1,27 @@
+module.exports = {
+  "globals": {
+    "NOT_RUNNING": false,
+    "AHEAD_GAINING": false,
+    "AHEAD_LOSING": false,
+    "BEHIND_GAINING": false,
+    "BEHIND_LOSING": false,
+    "PERSONAL_BEST": false,
+    "PAUSED": false,
+    "BEST_SEGMENT": false,
+    "TYPE_DELTA": false,
+    "TYPE_SPLIT_TIME": false,
+    "TYPE_DELTA_SPLIT": false,
+    "TYPE_SEGMENT_DELTA": false,
+    "TYPE_SEGMENT_TIME": false,
+    "TYPE_SEGMENT_DELTA_TIME": false,
+    "LiveSplit": false,
+    "addNull": false,
+    "subtractNull": false,
+    "formatMilliseconds": false,
+    "formatDeltaMilliseconds": false,
+    "leftJustify": false,
+    "rightJustify": false,
+    "LiveSplitInfoComponent": false,
+    "LiveSplitIndexableSplit": false,
+  }
+}

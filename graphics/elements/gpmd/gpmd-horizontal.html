@@ -1,0 +1,66 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<dom-module id="gpmd-horizontal">
+  <template>
+    <style>
+      :host {
+      }
+
+      #playing:not([hidden]) {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #notPlaying:not([hidden]) {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        font-size: 150%;
+        @apply --not-playing-style;
+      }
+
+      #title {
+        text-transform: uppercase;
+        text-align: left;
+        font-weight: 700;
+        @apply --title-style;
+      }
+
+      #artist {
+        text-align: center;
+        @apply --artist-style;
+      }
+
+      :host([hide-album]:not([hide-title]):not([hide-artist])) #artist {
+        text-align: right;
+        @apply --title-artist-style;
+      }
+
+      #album {
+        text-align: right;
+        @apply --album-style;
+      }
+    </style>
+
+    <div id="playing" hidden$="[[!playing]]">
+      <div id="title" hidden$="[[hideTitle]]">[[title]]</div>
+      <div id="artist" hidden$="[[hideArtist]]">[[artist]]</div>
+      <div id="album" hidden$="[[hideAlbum]]">[[album]]</div>
+    </div>
+    <div id="notPlaying" hidden$="[[playing]]">
+      - Not Playing -
+    </div>
+  </template>
+
+  <script src="gpmd.js"></script>
+  <script src="gpmd-horizontal.js"></script>
+</dom-module>

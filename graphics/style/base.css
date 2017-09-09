@@ -1,0 +1,11 @@
+@import 'https://fonts.googleapis.com/css?family=Aldrich|Ubuntu+Mono|VT323';
+
+body {
+  font-family: 'Aldrich', sans-serif;
+  margin: 0;
+}
+
+#container {
+  position: absolute;
+  overflow: hidden;
+}

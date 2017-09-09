@@ -1,0 +1,42 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/nodecg-toggle/nodecg-toggle.html">
+
+<dom-module id="mgt-advertisement">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #controls {
+      }
+
+      #show {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+
+      #inputs {
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
+      #forcedIndex {
+        @apply --layout-flex;
+      }
+    </style>
+
+    <div id="controls">
+      <nodecg-toggle id="show" replicant-name="ad-streamlab-donation-goal">Show Streamlabs Donation Goal</nodecg-toggle>
+    </div>
+
+    <div id="inputs">
+      <paper-input id="forcedIndex" label="Override Index (blank is no override)" always-float-label value="{{forcedIndex}}"></paper-input>
+      <paper-button id="update" class="flex" raised>Update</paper-button>
+    </div>
+  </template>
+
+  <script src="mgt-advertisement.js"></script>
+</dom-module>

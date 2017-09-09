@@ -1,0 +1,133 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../style/layout.html">
+<link rel="import" href="games/mgt-game-info/mgt-game-info.html">
+<link rel="import" href="mgt-advertisement/mgt-advertisement.html">
+<link rel="import" href="livesplit/ls-detail-timer/ls-detail-timer.html">
+<link rel="import" href="livesplit/ls-split/ls-split.html">
+<link rel="import" href="mgt-ext.html">
+
+<dom-module id="mgt-480-1080-section">
+  <template>
+    <style include="global-style">
+      :host {
+        --width: 480px;
+        --height: calc(var(--width) * 9 / 4);
+        --webcam-width: var(--width);
+        --webcam-height: 0px;
+        --ad-width: var(--width);
+        --ad-height: calc(var(--height) / 12);
+        --ad-donation-scale: 1.5;
+        --ad-font-size: 24px;
+        --outer-border: 16px;
+        --middle-border: 16px;
+        --split-icon-size: 48px;
+        --split-font-size: 22px;
+      }
+
+      :host([webcam]) {
+        --webcam-height: calc(var(--webcam-width) * 2 / 3);
+      }
+
+      :host {
+        width: var(--width);
+        height: var(--height);
+
+        background-image: var(--layout-bg-image);
+        background-position: bottom left;
+        background-size: var(--width) calc(var(--height) - var(--webcam-height));
+        background-repeat: no-repeat;
+      }
+
+      #info {
+        position: absolute;
+        box-sizing: border-box;
+        width: var(--width);
+        height: calc(var(--height) - var(--ad-height) - var(--webcam-height));
+        bottom: var(--ad-height);
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      :host #info {
+        padding: var(--outer-border) 0 calc(var(--middle-border) / 2) 0;
+      }
+
+      :host([webcam]) #info {
+        padding: calc(var(--middle-border) / 2) 0 calc(var(--middle-border) / 2) 0;
+      }
+
+      mgt-game-info {
+        flex: none;
+        box-sizing: border-box;
+        height: calc(var(--height) / 9);
+        padding: 0 var(--outer-border);
+      }
+
+      #splits {
+        flex: 1;
+        box-sizing: border-box;
+        padding-bottom: calc(var(--outer-border) * 0.25);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: var(--split-font-size);
+      }
+
+      #splits > * {
+        box-sizing: border-box;
+
+        --container-style: {
+          padding: 0px calc(var(--outer-border) * 1.25);
+        }
+      }
+
+      ls-split-header,
+      ls-indexable-split,
+      ls-split {
+        flex: 2 2 0.00001px;
+        --icon-box-style: {
+          width: var(--split-icon-size);
+        }
+      }
+
+      ls-detail-timer, ls-timer {
+        flex: 3 3 0.00001px;
+        --icon-box-style: {
+          width: calc(var(--split-icon-size) * 2);
+        }
+      }
+
+      mgt-advertisement {
+        left: 0;
+        bottom: 0;
+        padding: calc(var(--middle-border) / 2) var(--outer-border) var(--outer-border) var(--outer-border);
+      }
+    </style>
+
+    <div id="background"></div>
+    <mgt-advertisement></mgt-advertisement>
+    <div id="info">
+      <mgt-game-info index="0" text-type="game" subtext-type="category" max-text-size="[[maxTextSize]]"></mgt-game-info>
+      <div id="splits">
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="0"></ls-split>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="1"></ls-split>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="2"></ls-split>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="3"></ls-split>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="4"></ls-split>
+        <hr class="split" hidden$="[[!webcam]]"></hr>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="5"></ls-split>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="6" hidden$="[[webcam]]"></ls-split>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="7" hidden$="[[webcam]]"></ls-split>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="8" hidden$="[[webcam]]"></ls-split>
+        <hr class="split" hidden$="[[webcam]]"></hr>
+        <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-start-splits="[[numStartSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="9" hidden$="[[webcam]]"></ls-split>
+        <hr class="split"></hr>
+        <ls-detail-timer hide-name show-hours show-segment-minutes seconds-precision="1" segment-seconds-precision="1" comparison2="Best Segments" comparison1-text="PB" comparison2-text="Best"></ls-detail-timer>
+      </div>
+    </div>
+  </template>
+
+  <script src="mgt-480-1080-section.js"></script>
+</dom-module>

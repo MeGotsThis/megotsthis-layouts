@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Standard, 2G1C</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
+  <link rel="import" href="elements/games/mgt-game-bar/mgt-game-bar.html">
+  <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
+  <link rel="import" href="elements/mgt-break/mgt-break.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <link rel="import" href="elements/livesplit/ls-detail-timer/ls-detail-timer.html">
+  <link rel="import" href="elements/livesplit/ls-split/ls-split.html">
+  <custom-style>
+    <style include="global-style">
+      body {
+        background: url(img/backgrounds_cam/standard_2_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_cam/standard_2_bg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/standard_2_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/standard_2_bg.png) no-repeat -99999px -99999px;
+      }
+
+      #container {
+        --section-width: calc((var(--container-width) - var(--webcam-width)) / 2);
+        --section-height: calc(var(--container-height) - var(--capture-height));
+        --webcam-width: 0px;
+        --webcam-height: var(--section-height);
+        --capture-width: 956px;
+        --capture-height: calc(var(--capture-width) / 4 * 3);
+        --seperator-width: 4px;
+        --seperator-height: var(--capture-height);
+        --side-width: calc((var(--container-width) - var(--capture-width) * 2 - var(--seperator-width)) / 2);
+        --side-height: var(--capture-height);
+        --ad-width: var(--section-width);
+        --ad-height: 90px;
+      }
+
+      #container[webcam] {
+        --webcam-width: 544px; /* calc(var(--webcam-height) * 3 / 2); */
+      }
+
+      #container #background {
+        background-image: var(--layout-bg-image), var(--layout-bg-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image);
+        background-position: left bottom, right bottom, center top, left top, right top;
+        background-size: var(--section-width) var(--section-height), var(--section-width) var(--section-height), var(--seperator-width) var(--seperator-height), var(--side-width) var(--side-height), var(--side-width) var(--side-height);
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+      }
+
+      #container #foreground {
+        background-image: url(img/backgrounds_no_cam/standard_2_fg.png);
+      }
+
+      #container[webcam] #foreground {
+        background-image: url(img/backgrounds_cam/standard_2_fg.png);
+      }
+
+      mgt-game-info {
+        height: 52px;
+        position: absolute;
+        box-sizing: border-box;
+        left: 0;
+        bottom: 206px;
+        width: var(--section-width);
+        padding: 0 8px 0 16px;
+      }
+
+      #container mgt-game-info {
+      }
+
+      #container[webcam] mgt-game-info {
+        width: 664px;
+      }
+
+      mgt-game-bar {
+        position: absolute;
+        bottom: 266px;
+      }
+
+      #container mgt-game-bar {
+        width: 936px;
+      }
+
+      #container[webcam] mgt-game-bar {
+        width: 664px;
+      }
+
+      #container mgt-game-bar[index="0"] {
+        left: 16px;
+      }
+
+      #container mgt-game-bar[index="1"] {
+        right: 16px;
+      }
+
+      #splits {
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 258px;
+        width: var(--section-width);
+        padding: 0 16px 20px 8px;
+        font-size: 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #splits > * {
+        box-sizing: border-box;
+
+        --container-style: {
+          padding: 0 4px;
+        }
+      }
+
+      ls-detail-timer {
+        flex: 3;
+      }
+
+      ls-split-header,
+      ls-indexable-split,
+      ls-split {
+        flex: 2;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        --icon-box-style: {
+          width: 36px;
+        }
+      }
+
+      ls-detail-timer, ls-timer {
+        --icon-box-style: {
+          width: 72px;
+        }
+
+        --icon-box-style: {
+          justify-content: flex-end;
+        }
+
+        --timer-box-style: {
+          justify-content: flex-end;
+        }
+      }
+
+      mgt-advertisement {
+        left: 0;
+        bottom: 0;
+        padding: 8px 8px 16px 16px;
+      }
+
+      mgt-break {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: var(--container-width);
+        height: var(--capture-height);
+        font-size: 90px;
+      }
+
+      streamlabs-alertbox {
+        position: absolute;
+        right: 50%;
+        bottom: 0px;
+        width: calc(544px * 2 - 8px * 2 - 8px * 2);
+        height: calc(363px * 2 - 16px * 2 - 16px * 2);
+        padding-top: calc(16px * 2);
+        padding-left: calc(8px * 2);
+        padding-right: calc(8px * 2);
+        padding-bottom: calc(16px * 2);
+        transform: scale(calc(1/2));
+        transform-origin: bottom right;
+        --alert-width: 544px;
+        --alert-height: var(--webcam-height);
+        --alert-scale: 2;
+        --alert-padding-top: 16px;
+        --alert-padding-left: 8px;
+        --alert-padding-right: 8px;
+        --alert-padding-bottom: 16px;
+      }
+
+      #container[webcam] streamlabs-alertbox {
+        left: calc(50% - var(--alert-width) * var(--alert-scale) / 2);
+        right: auto;
+        transform-origin: bottom center;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <mgt-game-info index="0" subtext-type="category" max-text-size="36"></mgt-game-info>
+        <mgt-game-bar index="0" type="game" attach-right></mgt-game-bar>
+        <mgt-game-bar index="1" type="game" attach-left></mgt-game-bar>
+        <mgt-advertisement></mgt-advertisement>
+        <mgt-break></mgt-break>
+        <streamlabs-alertbox></streamlabs-alertbox>
+        <div id="splits">
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="0"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="1"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="2"></ls-split>
+          <hr class="split"></hr>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="3"></ls-split>
+          <ls-detail-timer hide-name show-minutes hide-segment-timer hide-comparison1 hide-comparison2 seconds-precision="1"></ls-detail-timer>
+        </div>
+      </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      this.visibleSplits = 4;
+      this.numLastSplits = 1;
+      this.lookAhead = 0;
+      webcam.on('change', (value) => {
+        if (value) {
+          this.$.container.setAttribute('webcam', true);
+        } else {
+          this.$.container.removeAttribute('webcam');
+        }
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>

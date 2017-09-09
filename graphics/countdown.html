@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Countdown</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+
+  <custom-style>
+    <style include="global-style">
+      body {
+        letter-spacing: -0.025em;
+      }
+
+      #container {
+        position: absolute;
+        width: 1920px;
+        height: 1080px;
+      }
+
+      #loop {
+        position: absolute;
+        top: 458.5px;
+        left: 420px;
+        width: 1080px;
+        height: 624px;
+        z-index: -9;
+      }
+
+      #nowPlaying {
+        color: white;
+        font-size: 34px;
+        width: 1146px;
+        bottom: 6px;
+        left: 388px;
+        opacity: 0;
+      }
+
+      #countdown {
+        font-size: 128px;
+        font-family: 'VT323', 'Ubuntu Mono', monospace;
+        color: #00ff00;
+        left: 732px;
+        top: 483px;
+        width: 456px;
+        height: 171px;
+        letter-spacing: 0.075em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #countdown,
+      #nowPlaying {
+        text-align: center;
+        white-space: nowrap;
+        position: absolute;
+        transform-origin: left;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+<div id="container">
+  <video id="loop" autoplay loop src="img/countdown/countdown_anim_loop.webm"></video>
+  <img id="background" src="img/backgrounds/countdown_bg.png">
+  <div id="countdown">
+    <div id="countdownMinutes"></div>
+    <div id="countdownColon">:</div>
+    <div id="countdownSeconds"></div>
+  </div>
+  <div id="nowPlaying"></div>
+</div>
+
+<script src="app/countdown.js"></script>
+</body>
+</html>

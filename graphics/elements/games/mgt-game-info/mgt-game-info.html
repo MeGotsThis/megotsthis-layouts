@@ -1,0 +1,52 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../shared/imports/textFit.html">
+<link rel="import" href="../../../style/text-styles.html">
+<link rel="import" href="../games-ext.html">
+
+<dom-module id="mgt-game-info">
+  <template>
+    <style include="text-styles">
+      :host {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        white-space: nowrap;
+      }
+
+      #category,
+      #name {
+        padding: 0 16px;
+      }
+
+      #text:not([hidden]) {
+        line-height: 0.9;
+        text-transform: uppercase;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+      }
+
+      #subtext:not([hidden]) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 52px;
+        background-image: url("img/category-bg.png");
+        background-size: auto 100%;
+        white-space: nowrap;
+        flex-shrink: 0;
+        font-size: 24px;
+      }
+    </style>
+
+    <span id="text" class="shadow" hidden$="[[!text]]" style$="color: [[computeTextColor(index, noColorOverride, _games)]]">[[text]]</span>
+    <div id="subtext" hidden$="[[!subtext]]">
+      <span class="shadow" style$="color: [[computeTextColor(index, subtextType, _games)]]">[[subtext]]</span>
+    </div>
+  </template>
+
+  <script src="mgt-game-info.js"></script>
+</dom-module>

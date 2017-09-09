@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Widescreen, 1 Player</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
+  <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
+  <link rel="import" href="elements/mgt-break/mgt-break.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <custom-style>
+    <style include="global-style">
+      body {
+        background: url(img/backgrounds_cam/widescreen_1-middle_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/widescreen_1-middle_fg.png) no-repeat -99999px -99999px;
+      }
+
+      #container {
+        --section-width: calc((var(--container-width) - var(--webcam-width)) / 2);
+        --section-height: calc(var(--container-height) - var(--capture-height));
+        --webcam-width: 0px;
+        --webcam-height: var(--section-height);
+        --capture-width: calc(var(--container-width) * 0.75);
+        --capture-height: calc(var(--capture-width) / 16 * 9);
+        --side-width: calc((var(--container-width) - var(--capture-width)) / 2);
+        --side-height: var(--capture-height);
+        --ad-width: var(--section-width);
+        --ad-height: 90px;
+      }
+
+      #container[webcam] {
+        --webcam-width: calc(var(--webcam-height) * 3 / 2 + 1px);
+        --ad-font-size: 32px;
+      }
+
+      #container #background {
+        background-image: var(--layout-bg-image), var(--layout-bg-image),  var(--layout-bg-image), var(--layout-bg-image);
+        background-position: left bottom, right bottom, left top, right top;
+        background-size: var(--section-width) var(--section-height), var(--section-width) var(--section-height), var(--side-width) var(--side-height), var(--side-width) var(--side-height);
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+      }
+
+      #container #foreground {
+        background-image: url(img/backgrounds_no_cam/widescreen_1-middle_fg.png);
+      }
+
+      #container[webcam] #foreground {
+        background-image: url(img/backgrounds_cam/widescreen_1-middle_fg.png);
+      }
+
+      mgt-game-info {
+        position: absolute;
+        left: 0;
+        bottom: var(--ad-height);
+        width: var(--section-width);
+        height: calc(var(--section-height) - var(--ad-height));
+        padding-left: 16px;
+        padding-right: 8px;
+      }
+
+      mgt-advertisement {
+        left: 0;
+        bottom: 0;
+        padding: 8px 8px 16px 16px;
+      }
+
+      mgt-break {
+        position: absolute;
+        left: calc(50% - var(--capture-width) / 2);
+        top: 0px;
+        width: var(--capture-width);
+        height: var(--capture-height);
+        font-size: 72px;
+      }
+
+      streamlabs-alertbox {
+        position: absolute;
+        right: 50%;
+        bottom: 0;
+        transform-origin: bottom right;
+        --alert-width: calc(var(--webcam-height) * 3 / 2 + 1px);
+        --alert-height: var(--webcam-height);
+        --alert-scale: 2;
+        --alert-padding-top: 16px;
+        --alert-padding-left: 8px;
+        --alert-padding-right: 8px;
+        --alert-padding-bottom: 16px;
+      }
+
+      #container[webcam] streamlabs-alertbox {
+        left: calc(50% - var(--alert-width) * var(--alert-scale) / 2);
+        right: auto;
+        transform-origin: bottom center;
+      }
+
+      #info {
+        box-sizing: border-box;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: var(--section-width);
+        height: var(--section-height);
+        padding: 20px 20px 20px 12px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        @apply --shadow;
+        font-size: 36px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <mgt-game-info index="0" text-type="game" subtext-type="category" max-text-size="54"></mgt-game-info>
+        <mgt-advertisement></mgt-advertisement>
+        <mgt-break></mgt-break>
+        <streamlabs-alertbox></streamlabs-alertbox>
+        <div id="info">
+          <span>I'm using 2 characters on the same controllers.</span>
+          <span>Teams are on with Team Attack OFF.</span>
+        </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      webcam.on('change', (value) => {
+        this.webcam = value;
+        if (value) {
+          this.$.container.setAttribute('webcam', true);
+        } else {
+          this.$.container.removeAttribute('webcam');
+        }
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>

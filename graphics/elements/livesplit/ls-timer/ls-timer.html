@@ -1,0 +1,89 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../livesplit-ext.html">
+
+<dom-module id="ls-timer">
+  <template>
+    <style>
+      :host {
+      }
+
+      #box {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @apply --container-style;
+      }
+
+      #timer {
+        width: 100%;
+        text-align: right;
+        @apply --timer-style;
+      }
+
+      #whole {
+        @apply --whole-style;
+      }
+
+      #fraction {
+        @apply --fraction-style;
+      }
+
+      .not-connected {
+        color: orange;
+        @apply --default-style;
+        @apply --not-connected-style;
+      }
+
+      .ahead-gaining {
+        color: lightgreen;
+        @apply --default-style;
+        @apply --ahead-gaining-style;
+      }
+
+      .ahead-losing {
+        color: green;
+        @apply --default-style;
+        @apply --ahead-losing-style;
+      }
+
+      .behind-gaining {
+        color: red;
+        @apply --default-style;
+        @apply --behind-gaining-style;
+      }
+
+      .behind-losing {
+        color: darkred;
+        @apply --default-style;
+        @apply --behind-losing-style;
+      }
+
+      .not-running {
+        color: gray;
+        @apply --default-style;
+        @apply --not-running-style;
+      }
+
+      .paused {
+        color: gray;
+        @apply --default-style;
+        @apply --paused-style;
+      }
+
+      .personal-best {
+        color: blue;
+        @apply --default-style;
+        @apply --personal-best-style;
+      }
+    </style>
+
+    <div id="box">
+      <span id="timer" class$="[[_computeTimerClass(_livesplitConnected, _liveSplit, _timeData)]]">
+        <span id="whole">[[currentTime.0]]</span><span id="fraction">[[currentTime.1]]</span>
+      </span>
+    </div>
+  </template>
+
+  <script src="ls-timer.js"></script>
+</dom-module>

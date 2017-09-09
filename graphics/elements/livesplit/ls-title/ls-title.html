@@ -1,0 +1,80 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../livesplit-ext.html">
+
+<dom-module id="ls-title">
+  <template>
+    <style>
+      :host {
+      }
+
+      #box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100%;
+        @apply --container-style;
+      }
+
+      #icon-box {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        @apply --icon-box-style;
+      }
+
+      #info-box {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        @apply --info-box-style;
+      }
+
+      #attempt-box {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        @apply --attempt-box-style;
+      }
+
+      #icon {
+        flex: none;
+        @apply --icon-style;
+      }
+
+      #name {
+        @apply --name-style;
+      }
+
+      #attempt {
+        flex: none;
+        @apply --attempt-style;
+      }
+    </style>
+
+    <div id="box">
+      <div id="icon-box" hidden$="[[hideIcon]]">
+        <img id="icon" src="[[iconSrc]]" />
+      </div>
+      <span id="info-box">
+        <span id="title" hidden$="[[_computeHide(singleLine, hideGame)]]">[[title]]</span>
+        <span id="category" hidden$="[[_computeHide(singleLine, hideCategory)]]">[[category]]</span>
+        <div id="singleLine" hidden$="[[!singleLine]]">
+          <span id="singleTitle" hidden$="[[hideGame]]">[[title]]</span>
+          <span id="singleDash" hidden$="[[_computeHide(hideGame, hideCategory)]]">-</span>
+          <span id="singleCategory" hidden$="[[hideCategory]]">[[category]]</span>
+        </div>
+      </span>
+      <span id="attempt-box">
+        <span id="attempt">[[attempts]]</span>
+      </span>
+    </div>
+  </template>
+
+  <script src="ls-title.js"></script>
+</dom-module>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gameboy, 2G1C Big</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
+  <link rel="import" href="elements/games/mgt-game-bar/mgt-game-bar.html">
+  <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
+  <link rel="import" href="elements/mgt-break/mgt-break.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <link rel="import" href="elements/livesplit/ls-detail-timer/ls-detail-timer.html">
+  <link rel="import" href="elements/livesplit/ls-split/ls-split.html">
+  <custom-style>
+    <style include="global-style">
+      body {
+        background: url(img/backgrounds_cam/gameboy_2_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/gameboy_2_fg.png) no-repeat -99999px -99999px;
+      }
+
+      #container {
+        --section-width: calc((var(--container-width) - var(--webcam-width)) / 2);
+        --section-height: calc(var(--container-height) - var(--capture-height));
+        --webcam-width: 0px;
+        --webcam-height: var(--section-height);
+        --capture-width: 950px;
+        --capture-height: calc(var(--capture-width) / 10 * 9);
+        --seperator-width: 4px;
+        --seperator-height: var(--capture-height);
+        --side-width: calc((var(--container-width) - var(--capture-width) * 2 - var(--seperator-width)) / 2);
+        --side-height: var(--capture-height);
+        --ad-width: var(--section-width);
+        --ad-height: 87px;
+      }
+
+      #container[webcam] {
+        --webcam-width: 336px; /* calc(var(--webcam-height) * 3 / 2); */
+      }
+
+      #container #background {
+        background-image: var(--layout-bg-image), var(--layout-bg-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image);
+        background-position: left bottom, right bottom, center top, left top, right top;
+        background-size: var(--section-width) var(--section-height), var(--section-width) var(--section-height), var(--seperator-width) var(--seperator-height), var(--side-width) var(--side-height), var(--side-width) var(--side-height);
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+      }
+
+      #container #foreground {
+        background-image: url(img/backgrounds_no_cam/gameboy_2_fg.png);
+      }
+
+      #container[webcam] #foreground {
+        background-image: url(img/backgrounds_cam/gameboy_2_fg.png);
+      }
+
+      mgt-game-info {
+        height: 52px;
+        position: absolute;
+        left: 0;
+        bottom: var(--ad-height);
+        padding: 0 8px 0 16px;
+        width: var(--section-width);
+      }
+
+      mgt-game-bar {
+        position: absolute;
+        bottom: 139px;
+        width: calc(var(--section-width) * var(--scale));
+        --bar-padding-top: calc(22px * var(--scale));
+        --bar-padding-bottom: calc(8px * var(--scale));
+        --scale: 1.25;
+        transform: scale(calc(1 / var(--scale)));
+      }
+
+      mgt-game-bar[index="0"] {
+        left: 0;
+        --bar-padding-left: calc(16px * var(--scale));
+        --bar-padding-right: calc(8px * var(--scale));
+        transform-origin: bottom left;
+      }
+
+      mgt-game-bar[index="1"] {
+        right: 0;
+        --bar-padding-left: calc(8px * var(--scale));
+        --bar-padding-right: calc(16px * var(--scale));
+        transform-origin: bottom right;
+      }
+
+      #splits {
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        width: var(--section-width);
+        height: 139px;
+        padding: 0 16px 16px 8px;
+        font-size: 24px;
+      }
+
+      #splitsL,
+      #splitsR {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      #splitsL {
+        justify-content: space-between;
+      }
+
+      #splitsL > * {
+        box-sizing: border-box;
+
+        --container-style: {
+        }
+      }
+
+      #splitsR > * {
+        box-sizing: border-box;
+
+        --container-style: {
+        }
+      }
+
+      ls-detail-timer {
+        flex: 2;
+      }
+
+      ls-split-header,
+      ls-indexable-split,
+      ls-split {
+        flex: 1;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        --icon-box-style: {
+          width: 36px;
+        }
+      }
+
+      ls-detail-timer, ls-timer {
+        --icon-box-style: {
+          width: 72px;
+        }
+
+        --icon-box-style: {
+          justify-content: flex-end;
+        }
+
+        --timer-box-style: {
+          justify-content: flex-end;
+        }
+      }
+
+      mgt-advertisement {
+        left: 0;
+        bottom: 0;
+        padding: 4px 8px 16px 16px;
+      }
+
+      mgt-break {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: var(--container-width);
+        height: var(--capture-height);
+        font-size: 90px;
+      }
+
+      streamlabs-alertbox {
+        position: absolute;
+        right: 50%;
+        bottom: 0px;
+        transform-origin: bottom right;
+        --alert-width: 336px;
+        --alert-height: var(--webcam-height);
+        --alert-scale: 3;
+      }
+
+      #container[webcam] streamlabs-alertbox {
+        left: calc(50% - var(--alert-width) * var(--alert-scale) / 2);
+        right: auto;
+        transform-origin: bottom center;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <mgt-game-info index="0" subtext-type="category" max-text-size="36"></mgt-game-info>
+        <mgt-game-bar index="0" type="game" attach-right></mgt-game-bar>
+        <mgt-game-bar index="1" type="game" attach-left></mgt-game-bar>
+        <mgt-advertisement></mgt-advertisement>
+        <mgt-break></mgt-break>
+        <streamlabs-alertbox></streamlabs-alertbox>
+        <div id="splits">
+          <div id="splitsL">
+            <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="0"></ls-split>
+            <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="1"></ls-split>
+            <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="2"></ls-split>
+          </div>
+          <div id="splitsR">
+            <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="3"></ls-split>
+            <ls-detail-timer hide-name show-minutes hide-segment-timer hide-comparison1 hide-comparison2 seconds-precision="1"></ls-detail-timer>
+          </div>
+        </div>
+      </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      this.visibleSplits = 4;
+      this.numLastSplits = 1;
+      this.lookAhead = 0;
+      this.column1Type = 'DeltaOrSplitTime';
+      this.column2Type = '';
+      webcam.on('change', (value) => {
+        if (value) {
+          this.$.container.setAttribute('webcam', true);
+        } else {
+          this.$.container.removeAttribute('webcam');
+        }
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Widescreen, 2 Players</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
+  <link rel="import" href="elements/games/mgt-game-bar/mgt-game-bar.html">
+  <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <link rel="import" href="elements/livesplit/ls-timer/ls-timer.html">
+  <custom-style>
+    <style include="global-style">
+      body {
+        background: url(img/backgrounds_cam/widescreen_2_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_cam/widescreen_2_bg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/widescreen_2_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/widescreen_2_bg.png) no-repeat -99999px -99999px;
+      }
+
+      #container {
+        --section-width: calc((var(--container-width) - var(--webcam-width)) / 2);
+        --section-height: calc(var(--container-height) - var(--capture-height));
+        --webcam-width: 0px;
+        --webcam-height: 460px;
+        --block-width: var(--webcam-width);
+        --block-height: calc(var(--section-height) - var(--webcam-height));
+        --capture-width: 944px;
+        --capture-height: calc(var(--capture-width) / 16 * 9);
+        --seperator-width: 4px;
+        --seperator-height: var(--capture-height);
+        --side-width: calc((var(--container-width) - var(--capture-width) * 2 - var(--seperator-width)) / 2);
+        --side-height: var(--capture-height);
+        --ad-width: var(--section-width);
+        --ad-height: 90px;
+      }
+
+      #container[webcam] {
+        --webcam-width: calc(var(--webcam-height) * 3 / 2);
+        --ad-font-size: 32px;
+      }
+
+      #container #background {
+        background-image: var(--layout-bg-image), var(--layout-bg-image), var(--layout-bg-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image);
+        background-position: left bottom, right bottom, center bottom, center top, left top, right top;
+        background-size: var(--section-width) var(--section-height), var(--section-width) var(--section-height), var(--block-width) var(--block-height), var(--seperator-width) var(--seperator-height), var(--side-width) var(--side-height), var(--side-width) var(--side-height);
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+      }
+
+      #container #foreground {
+        background-image: url(img/backgrounds_no_cam/widescreen_2_fg.png);
+      }
+
+      #container[webcam] #foreground {
+        background-image: url(img/backgrounds_cam/widescreen_2_fg.png);
+      }
+
+      mgt-game-info {
+        box-sizing: border-box;
+        position: absolute;
+        left: 0;
+        bottom: 106px;
+        height: 150px;
+        width: var(--section-width);
+        padding: 0 8px 0 16px;
+      }
+
+      mgt-game-bar {
+        box-sizing: border-box;
+        position: absolute;
+        width: var(--section-width);
+        bottom: 445px;
+        --bar-padding-top: 24px;
+        --bar-padding-bottom: 10px;
+      }
+
+      mgt-game-bar[index="0"] {
+        left: 0;
+        --bar-padding-left: 16px;
+        --bar-padding-right: 8px;
+      }
+
+      mgt-game-bar[index="1"] {
+        right: 0;
+        --bar-padding-left: 8px;
+        --bar-padding-right: 16px;
+      }
+
+      ls-timer {
+        position: absolute;
+        box-sizing: border-box;
+        right: 0;
+        bottom: 0;
+        width: var(--section-width);
+        padding: 0px 16px 16px 8px;
+        font-size: 72px;
+      }
+
+      mgt-advertisement {
+        left: 0;
+        bottom: 0;
+        padding: 8px 8px 16px 16px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <mgt-game-info index="0" text-type="game" subtext-type="category" no-color-override max-text-size="54"></mgt-game-info>
+        <mgt-game-bar index="0" type="runner" attach-right></mgt-game-bar>
+        <mgt-game-bar index="1" type="runner" attach-left></mgt-game-bar>
+        <mgt-advertisement></mgt-advertisement>
+        <ls-timer show-minutes seconds-precision="1" class="only-timer"></ls-detail-timer>
+      </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      webcam.on('change', (value) => {
+        if (value) {
+          this.$.container.setAttribute('webcam', true);
+        } else {
+          this.$.container.removeAttribute('webcam');
+        }
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>

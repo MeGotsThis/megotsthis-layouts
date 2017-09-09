@@ -1,0 +1,83 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/nodecg-toast/nodecg-toast.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="mgt-game-info.html">
+
+<dom-module id="mgt-games">
+  <template>
+    <style>
+      :host {
+        @apply(--layout-vertical);
+      }
+
+      #games-info {
+        @apply(--layout-vertical);
+      }
+
+      #row1, #row2 {
+        @apply(--layout-horizontal);
+      }
+
+      .games-spacer {
+        width: 24px;
+      }
+
+      #edit-ctrls {
+        @apply(--layout-horizontal);
+        margin-top: 32px;
+      }
+
+      #loadButton {
+        margin-left: 0;
+      }
+
+      #saveButton {
+        margin-right: 0;
+      }
+
+      #loadButton,
+      #saveButton {
+        @apply(--layout-flex-4);
+      }
+
+      #editButton {
+        background-color: #A50074;
+        color: white;
+        @apply(--layout-flex-6);
+      }
+
+      paper-button {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+      }
+
+      mgt-game-info {
+        width: calc(50% - 24px);
+      }
+    </style>
+
+    <nodecg-toast id="toast"></nodecg-toast>
+
+    <div id="games-info">
+      <div id="row1">
+        <mgt-game-info id="game0" label="Game 1" game="{{games.0}}"></mgt-game-info>
+        <div class="games-spacer"></div>
+        <mgt-game-info id="game1" label="Game 2" game="{{games.1}}"></mgt-game-info>
+      </div>
+      <div id="row2">
+        <mgt-game-info id="game2" label="Game 3" game="{{games.2}}"></mgt-game-info>
+        <div class="games-spacer"></div>
+        <mgt-game-info id="game3" label="Game 4" game="{{games.3}}"></mgt-game-info>
+      </div>
+    </div>
+
+    <div id="edit-ctrls">
+      <paper-button id="loadButton" raised on-tap="loadPreset">LOAD PRESET</paper-button>
+      <paper-button id="editButton" class="nodecg-configure" raised on-tap="editGame">EDIT GAMES</paper-button>
+      <paper-button id="saveButton" raised on-tap="savePreset">SAVE PRESET</paper-button>
+    </div>
+  </template>
+
+  <script src="mgt-games.js"></script>
+</dom-module>

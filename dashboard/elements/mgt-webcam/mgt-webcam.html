@@ -1,0 +1,37 @@
+<link rel="import" href="../../../bower_components/nodecg-toggle/nodecg-toggle.html">
+
+<dom-module id="mgt-webcam">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+      #controls {
+      }
+
+      #show {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+    </style>
+
+    <div id="controls">
+      <nodecg-toggle id="show" replicant-name="webcam">Show Webcam</nodecg-toggle>
+    </div>
+  </template>
+
+  <script>
+    class MgtWebcam extends Polymer.Element {
+      static get is() {
+        return 'mgt-webcam';
+      }
+
+      static get properties() {
+        return {};
+      }
+    }
+
+    customElements.define(MgtWebcam.is, MgtWebcam);
+  </script>
+</dom-module>

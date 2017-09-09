@@ -1,0 +1,28 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+
+<dom-module id="streamlabs-donationgoal">
+  <template>
+    <style>
+      :host {
+        width: 100%;
+        height: 85px;
+        @apply --donation-goal-style;
+      }
+
+      :host(:not([hidden])) {
+        display: block;
+      }
+
+      iframe {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+      }
+    </style>
+
+    <iframe id="content" src="[[url]]"></iframe>
+  </template>
+
+  <script src="streamlabs-donationgoal.js"></script>
+</dom-module>

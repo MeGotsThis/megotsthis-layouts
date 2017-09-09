@@ -1,0 +1,43 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../livesplit-ext.html">
+
+<dom-module id="ls-info-component">
+  <template>
+    <style>
+      :host {
+      }
+
+      #box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        @apply --container-style;
+      }
+
+      #text {
+        flex: none;
+        @apply --text-style;
+      }
+
+      #spacer {
+        flex: 1;
+      }
+
+      #value {
+        text-align: right;
+        flex: none;
+        @apply --value-style;
+      }
+    </style>
+
+    <div id="box">
+      <span id="text">[[text]]</span>
+      <div id="spacer"></div>
+      <span id="value">[[value]]</span>
+    </div>
+  </template>
+
+  <script src="ls-info-component.js"></script>
+</dom-module>

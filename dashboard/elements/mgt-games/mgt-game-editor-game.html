@@ -1,0 +1,75 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="mgt-game-editor-game">
+  <template>
+    <style>
+      .header {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+
+      .game {
+        @apply(--layout-flex-1);
+        border: 1px solid #C1C1C1;
+        margin-left: 4px;
+        padding: 16px;
+      }
+
+      .row {
+        @apply(--layout-horizontal);
+      }
+
+      .row > :not(:last-child) {
+        margin-right: 12px;
+      }
+
+      .row > :not(:first-child) {
+        margin-left: 12px;
+      }
+
+      paper-input {
+        @apply(--layout-flex);
+        --paper-input-container-disabled: {
+          opacity: 1;
+          background-color: #ffb0b3;
+        }
+
+        --paper-input-container-label: {
+          @apply(--input-label);
+        };
+        --paper-input-container-label-focus: {
+          @apply(--input-label-focus);
+        };
+        --paper-input-container-underline-focus: {
+          @apply(--input-underline-focus);
+        };
+      }
+    </style>
+
+    <div class="game">
+      <div class="header">[[title]]</div>
+
+      <div class="row">
+        <paper-input label="Game" always-float-label value="{{value.game}}"></paper-input>
+      </div>
+
+      <div class="row">
+        <paper-input label="Category" always-float-label value="{{value.category}}"></paper-input>
+      </div>
+
+      <div class="row">
+        <paper-input label="Runner" always-float-label value="{{value.runner}}"></paper-input>
+      </div>
+
+      <div class="row">
+        <paper-input label="Color Override" always-float-label value="{{value.color}}"></paper-input>
+      </div>
+    </div>
+  </template>
+
+  <script src="mgt-game-editor-game.js"></script>
+</dom-module>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+  <link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+  <link rel="import" href="../../bower_components/paper-item/paper-item.html">
+</head>
+<body>
+  <div style="height:300px">
+    <dom-bind id="loadPresets">
+      <template>
+        <paper-dropdown-menu id="preset" always-float-label label="Select a Preset">
+          <paper-listbox slot="dropdown-content" class="dropdown-content">
+            <template is="dom-repeat" items='[[presets]]' as="preset">
+              <paper-item>[[preset]]</paper-item>
+            </template>
+          </paper-listbox>
+        </paper-dropdown-menu>
+      </template>
+    </dom-bind>
+  </div>
+  <script src="game-preset-load.js"></script>
+</body>
+</html>

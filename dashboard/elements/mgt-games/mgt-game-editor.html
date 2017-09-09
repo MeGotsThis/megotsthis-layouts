@@ -1,0 +1,123 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="mgt-game-editor-game.html">
+
+<dom-module id="mgt-game-editor">
+  <template>
+    <style>
+      :host {
+        @apply(--layout-vertical);
+        @apply(--layout-center);
+      }
+
+      #title {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+
+      .header {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+
+      #games {
+        @apply(--layout-horizontal);
+      }
+
+      .game {
+        @apply(--layout-flex-1);
+        border: 1px solid #C1C1C1;
+        margin-left: 4px;
+        padding: 16px;
+      }
+
+      #games > :nth-child(1) {
+        --input-label: {
+          color: #32a7d3;
+        };
+        --input-label-focus: {
+          color: #32a7d3;
+        };
+        --input-underline-focus: {
+          background-color: #32a7d3;
+        };
+      }
+
+      #games > :nth-child(2) {
+        --input-label: {
+          color: #fa5959;
+        };
+        --input-label-focus: {
+          color: #fa5959;
+        };
+        --input-underline-focus: {
+          background-color: #fa5959;
+        };
+      }
+
+      #games > :nth-child(3) {
+        --input-label: {
+          color: #24c55d;
+        };
+        --input-label-focus: {
+          color: #24c55d;
+        };
+        --input-underline-focus: {
+          background-color: #24c55d;
+        };
+      }
+
+      #games > :nth-child(4) {
+        --input-label: {
+          color: #dd4dee;
+        };
+        --input-label-focus: {
+          color: #dd4dee;
+        };
+        --input-underline-focus: {
+          background-color: #dd4dee;
+        };
+      }
+
+      #buttons {
+        margin-top: 16px;
+      }
+
+      .row {
+        @apply(--layout-horizontal);
+      }
+
+      .row > :not(:last-child) {
+        margin-right: 12px;
+      }
+
+      .row > :not(:first-child) {
+        margin-left: 12px;
+      }
+
+      paper-input {
+        @apply(--layout-flex);
+        --paper-input-container-disabled: {
+          opacity: 1;
+          background-color: #ffb0b3;
+        }
+      }
+    </style>
+
+    <div id="title">Game Capture Editor</div>
+
+    <div id="games">
+      <mgt-game-editor-game title="Game 1" value="{{games.0}}"></mgt-game-editor-game>
+      <mgt-game-editor-game title="Game 2" value="{{games.1}}"></mgt-game-editor-game>
+      <mgt-game-editor-game title="Game 3" value="{{games.2}}"></mgt-game-editor-game>
+      <mgt-game-editor-game title="Game 4" value="{{games.3}}"></mgt-game-editor-game>
+    </div>
+  </template>
+
+  <script src="mgt-game-editor.js"></script>
+</dom-module>

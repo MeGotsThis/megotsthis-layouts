@@ -1,0 +1,74 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../livesplit-ext.html">
+<link rel="import" href="../ls-info-component/ls-info-component.html">
+
+<dom-module id="ls-delta">
+  <template>
+    <style>
+      :host {
+      }
+
+      #box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        @apply --container-style;
+      }
+
+      #text {
+        flex: none;
+        @apply --text-style;
+      }
+
+      #spacer {
+        flex: 1;
+      }
+
+      #value {
+        text-align: right;
+        flex: none;
+        @apply --value-style;
+      }
+
+      .ahead-gaining {
+        color: lightgreen;
+        @apply --default-style;
+        @apply --ahead-gaining-style;
+      }
+
+      .ahead-losing {
+        color: green;
+        @apply --default-style;
+        @apply --ahead-losing-style;
+      }
+
+      .behind-gaining {
+        color: red;
+        @apply --default-style;
+        @apply --behind-gaining-style;
+      }
+
+      .behind-losing {
+        color: darkred;
+        @apply --default-style;
+        @apply --behind-losing-style;
+      }
+
+      .best-segment {
+        color: gold;
+        @apply --default-style;
+        @apply --best-segment-style;
+      }
+    </style>
+
+    <div id="box">
+      <span id="text">[[text]]</span>
+      <div id="spacer"></div>
+      <span id="value" class$="time [[computeTimeClass(comparison, _liveSplit, _timeData, useBestSegment)]]">[[value]]</span>
+    </div>
+  </template>
+
+  <script src="ls-delta.js"></script>
+</dom-module>

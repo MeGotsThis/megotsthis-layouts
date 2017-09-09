@@ -1,0 +1,182 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../livesplit-ext.html">
+
+<dom-module id="ls-detail-timer">
+  <template>
+    <style>
+      :host {
+      }
+
+      #box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        height: 100%;
+        @apply --container-style;
+      }
+
+      #icon-box {
+        flex: none;
+        @apply --icon-box-style;
+      }
+
+      #info-box {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @apply --info-style;
+      }
+
+      #info-spacer {
+        flex: 1;
+      }
+
+      #mini-info-box {
+        flex: none;
+        display: flex;
+        flex-direction: column;
+        @apply --mini-info-style;
+      }
+
+      #timer-box {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: auto;
+        flex-direction: column;
+        justify-content: space-between;
+        @apply --timer-box-style;
+      }
+
+      #icon {
+        width: 100%;
+        height: 100%;
+        @apply --icon-style;
+      }
+
+      #name {
+        flex: none;
+        @apply --name-style;
+      }
+
+      #comparison1 {
+        flex: none;
+        @apply --comparison-info-style;
+        @apply --comparison-1-info-style;
+      }
+
+      #comparison2 {
+        flex: none;
+        @apply --comparison-info-style;
+        @apply --comparison-2-info-style;
+      }
+
+      #timer {
+        width: 100%;
+        text-align: right;
+        flex: none;
+        @apply --timer-style;
+      }
+
+      #segment {
+        width: 100%;
+        text-align: right;
+        flex: none;
+        @apply --segment-style;
+      }
+
+      .whole {
+        @apply --whole-style;
+      }
+
+      .fraction {
+        @apply --fraction-style;
+      }
+
+      .text {
+        @apply --default-style;
+        @apply --text-style;
+      }
+
+      .not-connected {
+        color: orange;
+        @apply --default-style;
+        @apply --not-connected-style;
+      }
+
+      .ahead-gaining {
+        color: lightgreen;
+        @apply --default-style;
+        @apply --ahead-gaining-style;
+      }
+
+      .ahead-losing {
+        color: green;
+        @apply --default-style;
+        @apply --ahead-losing-style;
+      }
+
+      .behind-gaining {
+        color: red;
+        @apply --default-style;
+        @apply --behind-gaining-style;
+      }
+
+      .behind-losing {
+        color: darkred;
+        @apply --default-style;
+        @apply --behind-losing-style;
+      }
+
+      .not-running {
+        color: gray;
+        @apply --default-style;
+        @apply --not-running-style;
+      }
+
+      .paused {
+        color: gray;
+        @apply --default-style;
+        @apply --paused-style;
+      }
+
+      .personal-best {
+        color: blue;
+        @apply --default-style;
+        @apply --personal-best-style;
+      }
+    </style>
+
+    <div id="box">
+      <div id="icon-box" hidden$="[[computeHide(_isNotRunning, hideIcon, _hideIcon)]]">
+        <iron-image sizing="contain" id="icon" src="[[split.icon]]" />
+      </div>
+      <span id="info-box">
+        <span id="name" class="text" hidden$="[[computeHide(_livesplitNotConnected, _isNotRunning, hideName)]]">[[split.name]]</span>
+        <div id="info-spacer"></div>
+        <div id="mini-info-box">
+          <span id="comparison1" class="text" hidden$="[[computeHide(_livesplitNotConnected, _isNotRunning, hideComparison1)]]">
+            [[_comparison1Text]]: [[comparison1Time]]
+          </span>
+          <span id="comparison2" class="text" hidden$="[[computeHideComarison2(_liveSplit, _livesplitNotConnected, _isNotRunning, hideComparison1, hideComparison2, comparison1, comparison2)]]">
+            [[_comparison2Text]]: [[comparison2Time]]
+          </span>
+        </div>
+      </span>
+      <span id="timer-box">
+        <span id="timer" class$="[[computeTimerClass(_livesplitConnected, _liveSplit, _timeData)]]">
+          <span class="whole">[[currentTime.0]]</span><span class="fraction">[[currentTime.1]]</span>
+        </span>
+        <span id="segment" hidden$="[[hideSegmentTimer]]">
+          <span class="whole">[[segmentTime.0]]</span><span class="fraction">[[segmentTime.1]]</span>
+        </span>
+      </span>
+    </div>
+  </template>
+
+  <script src="ls-detail-timer.js"></script>
+</dom-module>

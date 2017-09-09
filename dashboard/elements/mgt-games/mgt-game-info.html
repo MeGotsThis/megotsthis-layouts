@@ -1,0 +1,98 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<dom-module id="mgt-game-info">
+  <template>
+    <style>
+      :host {
+        @apply(--layout-vertical);
+      }
+
+      #label {
+        font-weight: 500;
+        font-size: 18px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .padded {
+        padding: 4px;
+      }
+
+      section {
+        @apply(--layout-vertical);
+      }
+
+      .modified label:after {
+        content: '*';
+      }
+
+      .divider {
+        border-bottom: 1px dashed black;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      #name .value {
+        font-weight: 500;
+        font-size: 18px;
+        height: 2.4em;
+        word-wrap: break-word;
+        word-wrap: break-word;
+        white-space: normal;
+
+        /* limit max lines to 2 */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .runner:nth-child(odd) {
+        margin-right: 4px;
+      }
+
+      .runner:nth-child(even) {
+        margin-left: 4px;
+      }
+
+      label {
+        font-size: 13px;
+      }
+
+      .value {
+        font-size: 16px;
+        font-weight: 500;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      #title {
+        color: var(--override-color, inherit);
+      }
+    </style>
+
+    <div id="label">[[label]]</div>
+
+    <section id="name" class="padded">
+      <label>Game</label>
+      <span id="title" class="value" title="[[game.game]]">[[game.game]]</span>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="padded">
+      <label>Category</label>
+      <span class="value" title="[[game.category]]">[[game.category]]&#8203;</span>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="padded">
+      <label>Runner</label>
+      <span class="value" title="[[game.runner]]">[[game.runner]]</span>
+    </section>
+  </template>
+
+  <script src="mgt-game-info.js"></script>
+</dom-module>

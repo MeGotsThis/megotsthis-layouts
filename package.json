@@ -1,0 +1,250 @@
+{
+  "name": "megotsthis-layout",
+  "description": "The on-stream graphics used by MeGotsThis.",
+  "version": "1.0.0",
+  "contributors": [
+    "MeGotsThis <megotsthis@gmail.com>"
+  ],
+  "dependencies": {
+    "bower-npm-resolver": "^0.8.1",
+    "clone": "^2.1.1",
+    "ffi": "^2.2.0",
+    "ref-wchar": "^1.0.2",
+    "request": "^2.67.0",
+    "request-promise": "^4.2.1",
+    "ws": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^4.4.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-config-xo": "^0.18.2",
+    "eslint-plugin-ava": "^4.2.2",
+    "eslint-plugin-html": "^3.0.0",
+    "istanbul": "^0.4.3",
+    "mocha": "^3.4.2"
+  },
+  "homepage": "http://megotsthis.com/",
+  "license": "Apache-2.0",
+  "nodecg": {
+    "compatibleRange": "~0.9.1",
+    "dashboardPanels": [
+      {
+        "name": "breaktext",
+        "title": "Break/Rest Text",
+        "width": 4,
+        "headerColor": "#2d4e8a",
+        "file": "breaktext.html",
+        "workspace": "Setup"
+      },
+      {
+        "name": "games",
+        "title": "Game Captures",
+        "width": 4,
+        "headerColor": "#2d4e8a",
+        "file": "games.html",
+        "workspace": "Setup"
+      },
+      {
+        "name": "game-editor",
+        "title": "",
+        "width": 6,
+        "dialog": true,
+        "dialogButtons": [
+          {
+            "name": "save",
+            "type": "confirm"
+          },
+          {
+            "name": "cancel",
+            "type": "dismiss"
+          }
+        ],
+        "file": "dialogs/edit-game.html"
+      },
+      {
+        "name": "save-game",
+        "title": "",
+        "width": 2,
+        "dialog": true,
+        "dialogButtons": [
+          {
+            "name": "save",
+            "type": "confirm"
+          },
+          {
+            "name": "cancel",
+            "type": "dismiss"
+          }
+        ],
+        "file": "dialogs/game-preset-save.html"
+      },
+      {
+        "name": "load-game",
+        "title": "",
+        "width": 2,
+        "dialog": true,
+        "dialogButtons": [
+          {
+            "name": "load",
+            "type": "confirm"
+          },
+          {
+            "name": "cancel",
+            "type": "dismiss"
+          }
+        ],
+        "file": "dialogs/game-preset-load.html"
+      },
+      {
+        "name": "livesplit",
+        "title": "LiveSplit Status",
+        "width": 2,
+        "file": "livesplit.html",
+        "headerColor": "#2d4e8a",
+        "workspace": "Setup"
+      },
+      {
+        "name": "webcam",
+        "title": "Webcam",
+        "width": 2,
+        "file": "webcam.html",
+        "headerColor": "#2d4e8a",
+        "workspace": "Setup"
+      },
+      {
+        "name": "advertisement",
+        "title": "Advertisement",
+        "width": 3,
+        "file": "advertisement.html",
+        "headerColor": "#2d4e8a",
+        "workspace": "Setup"
+      },
+      {
+        "name": "countdown",
+        "title": "Countdown",
+        "width": 4,
+        "file": "countdown.html",
+        "headerColor": "#2d4e8a",
+        "workspace": "Setup"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "desktop.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "desktop_88.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gameboy_1.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gameboy_2.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gameboy_2g1c_big.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gameboy_2g1c.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gameboy_3g1c.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "standard_1.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "standard_2.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "standard_2g1c.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gba_1.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gba_1_full.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gba_2.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gba_2g1c.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "widescreen_1.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "widescreen_1_middle.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "widescreen_2.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "widescreen_2g1c.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "gameboy_gba.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "smash-wii-u.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "countdown.html",
+        "width": 1920,
+        "height": 1080
+      },
+      {
+        "file": "ending.html",
+        "width": 1920,
+        "height": 1080
+      }
+    ],
+    "assetCategories": []
+  },
+  "scripts": {
+    "static": "eslint ./**/*.js ./**/*.html --ignore-path .eslintignore",
+    "test": "npm run static && istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
+  }
+}

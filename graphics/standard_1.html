@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Standard, 1 Player</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="elements/mgt-480-1080-section.html">
+  <link rel="import" href="elements/mgt-break/mgt-break.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <custom-style>
+    <style include="global-style">
+      body {
+        background: url(img/backgrounds_cam/standard_1_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/standard_1_fg.png) no-repeat -99999px -99999px;
+      }
+
+      #container #background {
+      }
+
+      #container #foreground {
+        background-image: url(img/backgrounds_no_cam/standard_1_fg.png);
+      }
+
+      #container[webcam] #foreground {
+        background-image: url(img/backgrounds_cam/standard_1_fg.png);
+      }
+
+      mgt-480-1080-section {
+        position: absolute;
+        --width: 480px;
+      }
+
+      mgt-break {
+        position: absolute;
+        left: 480px;
+        top: 0px;
+        width: 1440px;
+        height: 1080px;
+        font-size: 72px;
+      }
+
+      streamlabs-alertbox {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: top left;
+        --alert-width: 480px;
+        --alert-height: 320px;
+        --alert-scale: 2.5;
+        --alert-padding-top: 16px;
+        --alert-padding-left: 16px;
+        --alert-padding-right: 16px;
+        --alert-padding-bottom: 8px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <mgt-480-1080-section max-text-size="36" webcam="[[webcam]]"></mgt-480-1080-section>
+        <mgt-break></mgt-break>
+        <streamlabs-alertbox></streamlabs-alertbox>
+      </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      webcam.on('change', (value) => {
+        this.webcam = value;
+        if (value) {
+          this.$.container.setAttribute('webcam', true);
+        } else {
+          this.$.container.removeAttribute('webcam');
+        }
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gameboy, 3G1C</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
+  <link rel="import" href="elements/games/mgt-game-bar/mgt-game-bar.html">
+  <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
+  <link rel="import" href="elements/mgt-break/mgt-break.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <link rel="import" href="elements/livesplit/ls-detail-timer/ls-detail-timer.html">
+  <link rel="import" href="elements/livesplit/ls-split/ls-split.html">
+  <custom-style>
+    <style include="global-style">
+      body {
+        background: url(img/backgrounds_cam/gameboy_3_fg.png) no-repeat -99999px -99999px,
+          url(img/backgrounds_no_cam/gameboy_3_fg.png) no-repeat -99999px -99999px;
+      }
+
+      #container {
+        --section-width: var(--capture-width);
+        --section-height: calc(var(--container-height) - var(--capture-height));
+        --webcam-width: var(--capture-width);
+        --webcam-height: 0px;
+        --capture-width: 630px;
+        --capture-height: calc(var(--capture-width) / 10 * 9);
+        --seperator-width: 4px;
+        --seperator-height: var(--capture-height);
+        --side-width: calc((var(--container-width) - var(--capture-width) * 3 - var(--seperator-width) * 2) / 2);
+        --side-height: var(--capture-height);
+        --ad-width: var(--section-width);
+        --ad-height: 90px;
+      }
+
+      #container[webcam] {
+        --webcam-height: calc(var(--webcam-width) * 2 / 3);
+      }
+
+      #container #background {
+        background-image: var(--layout-bg-image), var(--layout-bg-image), var(--layout-bg-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image), var(--layout-bg-color1-image);
+        background-position: left var(--side-width) bottom, right var(--side-width) bottom, center bottom var(--webcam-height), left top, right top, left calc(var(--side-width) + var(--capture-width)) top, right calc(var(--side-width) + var(--capture-width)) top;
+        background-size: var(--section-width) var(--section-height), var(--section-width) var(--section-height), var(--section-width) calc(var(--section-height) - var(--webcam-height)), var(--side-width) var(--side-height), var(--side-width) var(--side-height), var(--seperator-width) var(--seperator-height), var(--seperator-width) var(--seperator-height);
+        background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+      }
+
+      #container #foreground {
+        background-image: url(img/backgrounds_no_cam/gameboy_3_fg.png);
+      }
+
+      #container[webcam] #foreground {
+        background-image: url(img/backgrounds_cam/gameboy_3_fg.png);
+      }
+
+      mgt-game-info {
+        position: absolute;
+        left: var(--side-width);
+        top: 666px;
+        width: var(--section-width);
+        height: 52px;
+        padding-left: calc(16px - var(--side-width));
+        padding-right: calc(8px - var(--seperator-width));
+      }
+
+      mgt-game-bar {
+        position: absolute;
+        box-sizing: border-box;
+        top: var(--capture-height);
+        --scale: 1.25;
+        transform: scale(calc(1 / var(--scale)));
+        --bar-padding-top: calc(20px * var(--scale));
+        --bar-padding-bottom: calc(17px * var(--scale));
+      }
+
+      mgt-game-bar[index="0"] {
+        left: 16px;
+        width: calc(621px * var(--scale));
+        transform-origin: top left;
+      }
+
+      mgt-game-bar[index="1"] {
+        --width: calc(614px * var(--scale));
+        left: calc(50% - var(--width) / 2);
+        width: var(--width);
+        transform-origin: top center;
+      }
+
+      mgt-game-bar[index="2"] {
+        right: 16px;
+        width: calc(621px * var(--scale));
+        transform-origin: top right;
+      }
+
+      #splits {
+        box-sizing: border-box;
+        position: absolute;
+        right: var(--side-width);
+        bottom: 0;
+        height: calc(var(--section-width) * 2 / 3);
+        width: var(--section-width);
+        padding: 8px calc(16px - var(--side-width)) 20px calc(8px - var(--seperator-width));
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 20px;
+      }
+
+      #splits > * {
+        box-sizing: border-box;
+
+        --container-style: {
+          padding: 0px 4px;
+        }
+      }
+
+      ls-split-header,
+      ls-indexable-split,
+      ls-split {
+        flex: 2;
+        --icon-box-style: {
+          width: 30px;
+        }
+      }
+
+      ls-detail-timer, ls-timer {
+        flex: 3;
+        --icon-box-style: {
+          width: 60px;
+        }
+      }
+
+      mgt-advertisement {
+        left: var(--side-width);
+        bottom: 0;
+        padding: 8px calc(8px - var(--seperator-width)) 16px calc(16px - var(--side-width));
+      }
+
+      mgt-break {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: var(--container-width);
+        height: var(--capture-height);
+        font-size: 90px;
+      }
+
+      streamlabs-alertbox {
+        position: absolute;
+        left: calc(50% - var(--webcam-width) * var(--alert-scale) / 2);
+        bottom: 0;
+        transform-origin: bottom center;
+        --alert-width: var(--webcam-width);
+        --alert-height: calc(var(--webcam-width) * 2 / 3);
+        --alert-scale: 1.5;
+        --alert-padding-top: 8px;
+        --alert-padding-left: 8px;
+        --alert-padding-right: 8px;
+        --alert-padding-bottom: 16px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <mgt-game-info index="0" subtext-type="category" max-text-size="36"></mgt-game-info>
+        <mgt-game-bar index="0" type="game" attach-left attach-right></mgt-game-bar>
+        <mgt-game-bar index="1" type="game" attach-left attach-right></mgt-game-bar>
+        <mgt-game-bar index="2" type="game" attach-left attach-right></mgt-game-bar>
+        <mgt-advertisement></mgt-advertisement>
+        <mgt-break></mgt-break>
+        <streamlabs-alertbox></streamlabs-alertbox>
+        <div id="splits">
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="0"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="1"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="2"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="3"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="4"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="5"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="6"></ls-split>
+          <hr class="split"></hr>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" visible-index="7"></ls-split>
+          <hr class="split"></hr>
+          <ls-detail-timer hide-name show-hours show-segment-minutes seconds-precision="1" segment-seconds-precision="1" comparison2="Best Segments" comparison1-text="PB" comparison2-text="Best"></ls-detail-timer>
+        </div>
+      </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      this.visibleSplits = 8;
+      this.numLastSplits = 1;
+      this.lookAhead = 1;
+      webcam.on('change', (value) => {
+        if (value) {
+          this.$.container.setAttribute('webcam', true);
+        } else {
+          this.$.container.removeAttribute('webcam');
+        }
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>
