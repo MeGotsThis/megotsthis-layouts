@@ -358,10 +358,16 @@ class LiveSplitIndexableSplit extends Polymer.Element {
     if (!_liveSplit.isValidSplitIndex(index)) {
       return undefined;
     }
-    if (index == _liveSplit.splitIndex) {
-      return 'active-split';
+    let classes = [];
+    if (index % 2 == 0) {
+      classes.push('even-split');
+    } else {
+      classes.push('odd-split');
     }
-    return undefined;
+    if (index == _liveSplit.splitIndex) {
+      classes.push('active-split');
+    }
+    return classes.length > 0 ? classes.join(' ') : undefined;
   }
 }
 
