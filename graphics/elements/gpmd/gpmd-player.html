@@ -1,4 +1,5 @@
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../bower_components/iron-image/iron-image.html">
 
 <dom-module id="gpmd-player">
@@ -16,11 +17,9 @@
         bottom: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: row;
+        @apply --layout-horizontal;
+        @apply --layout-center-center;
         flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
         font-size: 150%;
         @apply --not-playing-style;
       }
