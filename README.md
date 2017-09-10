@@ -16,3 +16,7 @@ The next problem is that I wanted to not change LiveSplit layout to match the OB
 - [VoiceMeeter Banana](http://www.vb-audio.com/Voicemeeter/banana.htm) (optional)
 - [Google Play Music Desktop Player](https://www.googleplaymusicdesktopplayer.com/) (optional)
 
+# Examples
+![2 Games 1 Controller Gameboy Layout](/examples/2g1c.png)
+
+![Desktop Layout](/examples/desktop.png)
