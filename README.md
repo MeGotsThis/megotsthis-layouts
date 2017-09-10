@@ -1,7 +1,7 @@
 # MeGotsThis Layouts
 This is the stream layouts used by MeGotsThis.
 
-This is based on [SGDQ 2017 layouts](https://github.com/GamesDoneQuick/sgdq17-layouts) but heavilied modified.
+This is based on [SGDQ 2017 layouts](https://github.com/GamesDoneQuick/sgdq17-layouts) but heavily modified.
 
 # Why use NodeCG instead built-in sources by OBS?
 One of my speedruns is running two games with one controller. The problem with that is playing both audio streams can be terrible experience. So to make it play one or both game audio sources dynamically, I used Voicemeeter allow seperate audio sources to occur in OBS. Because of Voicemeeter Banana, I can listen to both game audio while have 1 game audio on stream. The next problem is to how to represent which audio source is active, before I would create 4 scenes (mute both, game 1, game 2, both games) to each audio source to be active. It does not scale well with 3 games or to change games. So NodeCG is quite the solution.
