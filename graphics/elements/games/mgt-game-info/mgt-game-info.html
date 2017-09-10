@@ -1,3 +1,4 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../../../shared/imports/textFit.html">
 <link rel="import" href="../../../style/text-styles.html">
@@ -7,9 +8,8 @@
   <template>
     <style include="text-styles">
       :host {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        @apply --layout-vertical;
+        @apply --layout-justified;
         white-space: nowrap;
       }
 
@@ -19,26 +19,26 @@
       }
 
       #text:not([hidden]) {
+        @apply --layout-flex;
+        @apply --layout-horizontal;
+        @apply --layout-center-center;
+
         line-height: 0.9;
         text-transform: uppercase;
         text-align: center;
-        flex-grow: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         font-weight: 700;
       }
 
       #subtext:not([hidden]) {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @apply --layout-horizontal;
+        @apply --layout-center-center;
+        flex-shrink: 1;
+
         height: 52px;
         background-image: url("img/category-bg.png");
         background-size: auto 100%;
         white-space: nowrap;
-        flex-shrink: 0;
-        font-size: 24px;
+        font-size: var(--subtext-font-size, 24px);
       }
     </style>
 

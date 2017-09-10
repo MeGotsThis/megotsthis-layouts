@@ -9,7 +9,6 @@
     <style include="text-styles">
       :host {
         position: absolute;
-        display: flex;
         height: calc(70px + var(--bar-padding-top, 0px) + var(--bar-padding-bottom, 0px));
         padding-top: var(--bar-padding-top);
         padding-left: var(--bar-padding-left);
@@ -27,25 +26,24 @@
       }
 
       #main {
-        align-items: flex-start;
+        height: 100%;
         @apply --layout-horizontal;
         @apply --layout-flex;
       }
 
       #leftCapContainer:not([hidden]),
       #rightCapContainer:not([hidden]) {
-        display: flex;
-        flex-direction: column;
+        @apply --layout-vertical;
       }
 
       #leftCapContainer {
         width: 28px;
-        align-items: flex-end;
+        @apply --layout-end;
       }
 
       #rightCapContainer {
         width: 36px;
-        align-items: flex-start;
+        @apply --layout-start;
       }
 
       :host([attach-left]) #rightCapContainer {
@@ -59,12 +57,11 @@
       #body {
         height: 100%;
         background: url("img/center.png");
-        flex: 1;
         min-width: 1px; /* needed to prevent overflow */
         box-shadow: 0 4px rgba(0,0,0,0.33);
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @apply --layout-horizontal;
+        @apply --layout-center-center;
+        @apply --layout-flex;
       }
 
       #text {

@@ -3,24 +3,11 @@
 <link rel="import" href="../../../../shared/imports/easeljs.html">
 <link rel="import" href="../../../style/text-styles.html">
 
-<!--
-Attached left, right, or none
-  No greebles on attachment side
-  Placement indicator comes out from attachment side w/ constant margin
-  Placement indicators & audio indicators only used when attached to a side
-
-Width configurable
-Height constant
-
-Audio indicator comes out from side opposide placement indicator
--->
-
 <dom-module id="mgt-game-place">
   <template>
     <style include="text-styles">
       :host {
         position: absolute;
-        display: flex;
         width: 6em;
         height: 70px;
         font-size: 50px;
@@ -62,12 +49,12 @@ Audio indicator comes out from side opposide placement indicator
       }
 
       #time {
-        display: flex;
+        @apply --layout-horizontal;
+        @apply --layout-center;
         width: 5em;
         height: 70px;
         background: url("img/time-center.png");
         position: relative;
-        align-items: center;
       }
 
       #time:before {
@@ -85,8 +72,8 @@ Audio indicator comes out from side opposide placement indicator
       }
 
       #time span {
+        @apply --layout-flex;
         font-weight: 700;
-        flex-grow: 1;
         text-align: center;
         padding-right: 24px;
         line-height: 64px;
