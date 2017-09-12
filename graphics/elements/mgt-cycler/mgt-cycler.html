@@ -1,3 +1,4 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../bower_components/polymer/polymer.html">
 
 <dom-module id="mgt-cycler">
@@ -9,9 +10,8 @@
       .middle {
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @apply --layout;
+        @apply --layout-center-center;
       }
 
       #content {
