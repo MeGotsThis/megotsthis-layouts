@@ -1,3 +1,4 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../../../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../livesplit-ext.html">
@@ -9,46 +10,38 @@
       }
 
       #box {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        @apply --layout-horizontal;
+        @apply --layout-justified;
         height: 100%;
         @apply --container-style;
       }
 
       #icon-box {
-        flex: none;
+        @apply --layout-flex-none;
         @apply --icon-box-style;
       }
 
       #info-box {
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        @apply --layout-flex;
+        @apply --layout-vertical;
+        @apply --layout-justified;
         @apply --info-style;
       }
 
       #info-spacer {
-        flex: 1;
+        @apply --layout-flex;
       }
 
       #mini-info-box {
-        flex: none;
-        display: flex;
-        flex-direction: column;
+        @apply --layout-flex-none;
+        @apply --layout-vertical;
         @apply --mini-info-style;
       }
 
       #timer-box {
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: auto;
-        flex-direction: column;
-        justify-content: space-between;
+        @apply --layout-flex;
+        @apply --layout-vertical;
+        @apply --layout-justified;
         @apply --timer-box-style;
       }
 
@@ -59,33 +52,31 @@
       }
 
       #name {
-        flex: none;
+        @apply --layout-flex-none;
         @apply --name-style;
       }
 
       #comparison1 {
-        flex: none;
+        @apply --layout-flex-none;
         @apply --comparison-info-style;
         @apply --comparison-1-info-style;
       }
 
       #comparison2 {
-        flex: none;
+        @apply --layout-flex-none;
         @apply --comparison-info-style;
         @apply --comparison-2-info-style;
       }
 
       #timer {
-        width: 100%;
+        @apply --layout-flex-none;
         text-align: right;
-        flex: none;
         @apply --timer-style;
       }
 
       #segment {
-        width: 100%;
+        @apply --layout-flex-none;
         text-align: right;
-        flex: none;
         @apply --segment-style;
       }
 

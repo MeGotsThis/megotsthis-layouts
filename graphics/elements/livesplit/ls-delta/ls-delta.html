@@ -1,3 +1,4 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../livesplit-ext.html">
 <link rel="import" href="../ls-info-component/ls-info-component.html">
@@ -9,26 +10,25 @@
       }
 
       #box {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        @apply --layout-horizontal;
+        @apply --layout-justified;
+        @apply --layout-center;
         height: 100%;
         @apply --container-style;
       }
 
       #text {
-        flex: none;
+        @apply --layout-flex-none;
         @apply --text-style;
       }
 
       #spacer {
-        flex: 1;
+        @apply --layout-flex-auto;
       }
 
       #value {
+        @apply --layout-flex-none;
         text-align: right;
-        flex: none;
         @apply --value-style;
       }
 

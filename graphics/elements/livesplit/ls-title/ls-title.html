@@ -1,3 +1,4 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../livesplit-ext.html">
 
@@ -8,42 +9,40 @@
       }
 
       #box {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        @apply --layout-horizontal;
+        @apply --layout-justified;
+        @apply --layout-center;
         height: 100%;
         @apply --container-style;
       }
 
       #icon-box {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
+        @apply --layout-flex;
+        @apply --layout-horizontal;
+        @apply --layout-start-justified;
+        @apply --layout-center;
         @apply --icon-box-style;
       }
 
       #info-box {
-        flex: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
+        @apply --layout-flex-none;
+        @apply --layout-vertical;
+        @apply --layout-justified;
+        @apply --layout-center;
         @apply --info-box-style;
       }
 
       #attempt-box {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: flex-end;
+        @apply --layout-flex;
+        @apply --layout-horizontal;
+        @apply --layout-end-justified;
+        @apply --layout-end;
+        @apply --layout-self-end;
         @apply --attempt-box-style;
       }
 
       #icon {
-        flex: none;
+        @apply --layout-flex-none;
         @apply --icon-style;
       }
 
@@ -52,7 +51,7 @@
       }
 
       #attempt {
-        flex: none;
+        @apply --layout-flex-none;
         @apply --attempt-style;
       }
     </style>

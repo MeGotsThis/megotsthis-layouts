@@ -1,3 +1,4 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../livesplit-ext.html">
 
@@ -8,51 +9,45 @@
       }
 
       #box {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        @apply --layout-horizontal;
+        @apply --layout-justified;
         height: 100%;
         @apply --container-style;
       }
 
       #icon-box {
-        flex: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
+        @apply --layout-flex-none;
+        @apply --layout-vertical;
+        @apply --layout-center-justified;
+        @apply --layout-center;
         @apply --icon-box-style;
       }
 
       #text-box {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
+        @apply --layout-flex;
+        @apply --layout-horizontal;
         @apply --text-box-style;
       }
 
       #name-box {
-        display: flex;
-        flex-grow: 1;
-        flex-shrink: 1;
-        flex-basis: auto;
-        flex-direction: column;
-        justify-content: space-around;
+        @apply --layout-flex;
+        @apply --layout-horizontal;
+        @apply --layout-start-justified;
+        @apply --layout-center;
         @apply --name-box-style;
       }
 
       #column-box {
-        flex: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        @apply --layout-flex-none;
+        @apply --layout-horizontal;
+        @apply --layout-justified;
+        @apply --layout-center;
         @apply --column-box-style;
       }
 
       .column {
+        @apply --layout-flex;
         text-align: right;
-        flex: 1;
         @apply --column-style;
       }
 

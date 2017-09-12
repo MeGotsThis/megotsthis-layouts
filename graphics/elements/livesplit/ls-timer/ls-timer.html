@@ -1,3 +1,4 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../livesplit-ext.html">
 
@@ -8,15 +9,12 @@
       }
 
       #box {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        @apply --layout-horizontal;
+        @apply --layout-end-justified;
         @apply --container-style;
       }
 
       #timer {
-        width: 100%;
         text-align: right;
         @apply --timer-style;
       }
