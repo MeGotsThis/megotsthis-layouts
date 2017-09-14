@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style/layout.css">
   <link rel="import" href="style/layout.html">
   <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="elements/gpmd/gpmd-horizontal.html">
   <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
   <link rel="import" href="elements/mgt-break/mgt-break.html">
@@ -58,18 +59,18 @@
 
         --title-style: {
           padding-right: 6px;
-          flex: 10 1;
+          @apply --layout-flex-10;
         };
 
         --artist-style: {
           padding-left: 6px;
           padding-right: 6px;
-          flex: 7 1;
+          @apply --layout-flex-7;
         };
 
         --album-style: {
           padding-left: 6px;
-          flex: 8 1;
+          @apply --layout-flex-8;
         };
       }
 

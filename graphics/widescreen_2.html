@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style/layout.css">
   <link rel="import" href="style/layout.html">
   <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
   <link rel="import" href="elements/games/mgt-game-bar/mgt-game-bar.html">
   <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
@@ -96,6 +97,10 @@
         width: var(--section-width);
         padding: 0px 16px 16px 8px;
         font-size: 72px;
+
+        --container-style: {
+          @apply --layout-center-center;
+        }
       }
 
       mgt-advertisement {

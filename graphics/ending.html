@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style/layout.css">
   <link rel="import" href="style/layout.html">
   <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 
   <custom-style>
     <style include="global-style">
@@ -45,9 +46,8 @@
         top: 140px;
         width: 1920px;
         letter-spacing: 0.075em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @apply --layout;
+        @apply --layout-center-center;
       }
 
       #thanks,

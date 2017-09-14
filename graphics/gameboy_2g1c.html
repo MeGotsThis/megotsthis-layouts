@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style/layout.css">
   <link rel="import" href="style/layout.html">
   <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
   <link rel="import" href="elements/games/mgt-game-bar/mgt-game-bar.html">
   <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
@@ -62,8 +63,7 @@
         height: calc(var(--left-section-height) - var(--webcam-height) - var(--ad-height));
         bottom: var(--ad-height);
 
-        display: flex;
-        flex-direction: column;
+        @apply --layout-vertical;
       }
 
       #container #info {
@@ -109,13 +109,12 @@
       }
 
       #splits {
-        flex: 1;
+        @apply --layout-flex;
         box-sizing: border-box;
         padding-bottom: 4px;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        @apply --layout-vertical;
+        @apply --layout-justified;
         font-size: 20px;
       }
 
@@ -130,14 +129,14 @@
       ls-split-header,
       ls-indexable-split,
       ls-split {
-        flex: 2;
+        @apply --layout-flex-2;
         --icon-box-style: {
           width: 30px;
         }
       }
 
       ls-detail-timer, ls-timer {
-        flex: 3;
+        @apply --layout-flex-3;
         --icon-box-style: {
           width: 60px;
         }

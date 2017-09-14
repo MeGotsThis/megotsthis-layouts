@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style/layout.css">
   <link rel="import" href="style/layout.html">
   <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
   <link rel="import" href="elements/games/mgt-game-info/mgt-game-info.html">
   <link rel="import" href="elements/games/mgt-game-bar/mgt-game-bar.html">
   <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
@@ -88,8 +89,7 @@
       }
 
       #splits {
-        display: flex;
-        flex-direction: row;
+        @apply --layout-horizontal;
         position: absolute;
         right: 0;
         bottom: 0;
@@ -102,14 +102,13 @@
 
       #splitsL,
       #splitsR {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+        @apply --layout-flex;
+        @apply --layout-vertical;
         min-width: 0;
       }
 
       #splitsL {
-        justify-content: space-between;
+        @apply --layout-justified;
       }
 
       #splitsL > * {
@@ -127,13 +126,13 @@
       }
 
       ls-detail-timer {
-        flex: 2;
+        @apply --layout-flex-2;
       }
 
       ls-split-header,
       ls-indexable-split,
       ls-split {
-        flex: 1;
+        @apply --layout-flex;
         padding-top: 1px;
         padding-bottom: 1px;
         --icon-box-style: {
@@ -147,11 +146,11 @@
         }
 
         --icon-box-style: {
-          justify-content: flex-end;
+          @apply --layout-end-justified;
         }
 
         --timer-box-style: {
-          justify-content: flex-end;
+          @apply --layout-end-justified;
         }
       }
 
