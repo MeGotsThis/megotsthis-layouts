@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Widescreen Full-Screen, 1 Player</title>
+  <link rel="stylesheet" href="style/layout.css">
+  <link rel="import" href="style/layout.html">
+  <link rel="import" href="../shared/imports/gsap.html">
+  <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+  <link rel="import" href="elements/mgt-advertisement/mgt-advertisement.html">
+  <link rel="import" href="elements/mgt-break/mgt-break.html">
+  <link rel="import" href="elements/streamlabs/streamlabs-alertbox/streamlabs-alertbox.html">
+  <link rel="import" href="elements/livesplit/ls-title/ls-title.html">
+  <link rel="import" href="elements/livesplit/ls-timer/ls-timer.html">
+  <link rel="import" href="elements/livesplit/ls-split/ls-split.html">
+  <link rel="import" href="elements/mgt-ext.html">
+  <custom-style>
+    <style include="global-style">
+      #container {
+        --webcam-width: 480px;
+        --webcam-height: 0px;
+        --capture-width: var(--container-width);
+        --capture-height: var(--container-height);
+        --ad-width: 720px;
+        --ad-height: 60px;
+      }
+
+      #container[webcam] {
+        --webcam-height: calc(var(--webcam-width) * 2 / 3);
+      }
+
+      #splits {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        box-sizing: border-box;
+        padding-bottom: 4px;
+
+        @apply --layout-horizontal;
+        @apply --layout-justified;
+        font-size: 16px;
+        background-color: rgba(128, 128, 128, 0.2);
+      }
+
+      #splits > * {
+        box-sizing: border-box;
+
+        --container-style: {
+          padding: 0px 4px;
+        }
+      }
+
+      ls-split-header,
+      ls-indexable-split,
+      ls-split {
+        @apply --layout-flex-2;
+        --icon-box-style: {
+          width: 30px;
+        }
+      }
+
+      ls-detail-timer, ls-timer {
+        @apply --layout-flex-1;
+        --icon-box-style: {
+          width: 72px;
+        }
+        --container-style: {
+          padding-left: 8px;
+          padding-right: 4px;
+        }
+      }
+
+      mgt-advertisement {
+        right: 0;
+        top: 0;
+        padding: 8px 16px 16px 16px;
+        background-color: rgba(128, 128, 128, 0.1);
+      }
+
+      mgt-break {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: var(--capture-width);
+        height: var(--capture-height);
+        font-size: 72px;
+      }
+
+      streamlabs-alertbox {
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: top left;
+        --alert-scale: 1.5;
+        --alert-width: var(--left-section-width);
+        --alert-height: calc(var(--left-section-width) * 2 / 3);
+        --alert-padding-top: 16px;
+        --alert-padding-left: 16px;
+        --alert-padding-right: 16px;
+        --alert-padding-bottom: 8px;
+      }
+    </style>
+  </custom-style>
+</head>
+<body>
+  <dom-bind id="layout">
+    <template>
+      <div id="container">
+        <div id="background"></div>
+        <div id="foreground"></div>
+        <mgt-advertisement></mgt-advertisement>
+        <mgt-break></mgt-break>
+        <streamlabs-alertbox></streamlabs-alertbox>
+        <div id="splits">
+          <ls-title></ls-title>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="0"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="1"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="2"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="3"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="4"></ls-split>
+          <ls-split show-minutes seconds-precision="1" show-delta-seconds-precision show-best-segment num-visible-splits="[[visibleSplits]]" num-last-splits="[[numLastSplits]]" look-ahead="[[lookAhead]]" column1-type="[[column1Type]]" column2-type="[[column2Type]]" visible-index="5"></ls-split>
+          <ls-timer hide-name show-hours show-segment-minutes seconds-precision="1" segment-seconds-precision="1" comparison2="Best Segments" comparison1-text="PB" comparison2-text="Best"></ls-timer>
+        </div>
+      </div>
+    </template>
+  </dom-bind>
+
+  <script>
+    const webcam = nodecg.Replicant('webcam');
+
+    let layout = document.querySelector('#layout');
+    (function() {
+      this.visibleSplits = 6;
+      this.numLastSplits = 1;
+      this.lookAhead = 0;
+      this.column1Type = 'DeltaOrSplitTime';
+      this.column2Type = '';
+      webcam.on('change', (value) => {
+        this.webcam = value;
+      });
+    }).apply(layout);
+  </script>
+</body>
+</html>
