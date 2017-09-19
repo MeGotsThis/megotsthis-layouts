@@ -3,5 +3,6 @@ module.exports = {
     "formatMusicMilliseconds": false,
     "leftJustify": false,
     "rightJustify": false,
+    "GooglePlayMusicDesktopBase": false,
   }
 }
