@@ -248,6 +248,10 @@
     ],
     "assetCategories": []
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MeGotsThis/megotsthis-layouts.git"
+  },
   "scripts": {
     "static": "eslint ./**/*.js ./**/*.html --ignore-path .eslintignore",
     "test": "npm run static && istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec"
