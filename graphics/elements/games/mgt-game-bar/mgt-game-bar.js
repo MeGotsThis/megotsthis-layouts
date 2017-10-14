@@ -219,7 +219,7 @@
     }
 
     currentGamesChanged(value) {
-      this._games = value;
+      this._games = [...value];
     }
 
     gameAudioChannelsChanged(newVal) {
